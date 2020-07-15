@@ -1,5 +1,6 @@
 const $ICONS = {
   //! terser rewrites $ICONS as first parameter for IIFE
+  // im: "box:9;path:m3 3h3v3h-3z",
   // text: "box:100;fill:red;<text x='45' y='75' font-size='40' font-family='arial' text-anchor='middle'>{is}</text>",
   // dot1: "box:10;path:M5 5m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0,fill='red';scale:.2",
   // dot2: "top:{d1}",
@@ -21,11 +22,15 @@ const $ICONS = {
   }, // Functions
   Attrs = {
     // Custom Element Observed Attributes
-    is: "", // ICONs[is]
-    svg: 0, // create img (default) or raw SVG
+    v1: "",//optional attribute
+    v2: "",//optional attribute
+    v3: "",//optional attribute
+    is: "", // ICONs[is] iconstring definition
+    border: "",
+    filter: "",
+    img: 1, // create img (default) or raw SVG
     box: 9, // viewbox='0 0 n n' parsed from Icon string: "box:24;path:..."
     rect: "<rect width='100%' height='100%' fill='{tile}' {border}/>",
-    border: "",
     tile: "none",
     fill: "none",
     width: 1,
@@ -37,8 +42,9 @@ const $ICONS = {
     w: 0,
     h: 0,
     top: "",
-    $: FUNCs, // Custom Element is API for ICONs
-    icons: ICONS, // Custom Element is API for ICONs
+    // in: "console.log(21,this.parentNode,this.parentNode.scale=1.2,this.parentNode.stroke='green')",
+    // out: "console.log(22,this.parentNode.scale=1,this.parentNode.stroke='blue')",
+    api: [ICONS, FUNCs], // Custom Element is API for ICONs and FUNCs, add icons in getElementById(x).$[0]
   } // Attributes
 ) => {
   customElements.define(
@@ -48,11 +54,11 @@ const $ICONS = {
         return Object.keys(Attrs);
       }
       attributeChangedCallback() {
-        this.icon();
+        this.svg();
       }
-      icon(
+      svg(
         THIS = this,
-        command = THIS.A || // first init
+        func = THIS.A || // first init, declare func var, but not used in init
           Object.keys(
             (THIS.A = { ...Attrs }) // local copy Element getter/setter for all attributes
           ).map(
@@ -77,30 +83,33 @@ const $ICONS = {
                 //----------------------------------------------------------------------
               ) // end defineProperty
           ), // end .map((attr) one time init
-        VAR1 = THIS.box / 2,
-        svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${
-          THIS.w || THIS.box
-        } ${THIS.h || THIS.box}'>${`${
-          THIS.rect
-        }<g stroke='{stroke}' stroke-width='{width}' fill='{fill}' opacity='{opacity}' transform='translate({xy}) matrix({scale} 0 0 {scale} ${
-          VAR1 - VAR1 * THIS.scale
-        } ${VAR1 - VAR1 * THIS.scale}) rotate({rotate} ${VAR1} ${VAR1})'>${(
-          ICONS[THIS.is] || "path:m3 3h3v3h-3z"
-        ).split`;`.map(
+        pars, // parse icon string setting properties (box:24)
+        icon = (ICONS[THIS.is] || "").split`;`.map(
           (cmd) => (
-            ([command, VAR1] = cmd.trim().split`:`),
-            FUNCs[command]
-              ? FUNCs[command].apply(THIS, VAR1.split`,`) //execute
+            ([func, pars] = cmd.trim().split`:`),
+            FUNCs[func]
+              ? FUNCs[func].apply(THIS, pars.split`,`) //execute
               : cmd // no command exists, return (bare SVG) string
           )
-        ).join``}</g>{top}`.replace(
-          /{\s?([^{}\s]*)\s?}/g,
+        ).join``,
+        halfbox = THIS.box / 2, // replace saves 2 GZbytes, adds 26 Minified bytes
+        svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${THIS.w || THIS.box} ${THIS.h || THIS.box}'>${
+          THIS.rect
+        }<g stroke-width='{width}' stroke='{stroke}' fill='{fill}' opacity='{opacity}' filter='{filter}' transform='translate({xy}) matrix({scale} 0 0 {scale} ${
+          halfbox - halfbox * THIS.scale
+        } ${halfbox - halfbox * THIS.scale}) rotate({rotate} ${halfbox} ${halfbox})'>${icon}</g>${
+          THIS.top
+        }</svg>`.replace(
+          /{\s?([^{}\s]*)\s?}/g, //! original regexp
+          // /{([^{}\s]*)}/g,//! seems to work also
           (sub, val) => THIS[val]
-        )}</svg>`
+        )
       ) {
-        THIS.innerHTML = THIS.svg
-          ? svg
-          : `<img src="data:image/svg+xml,${svg.replace(/#/g, "%23")}">`;
+        return (THIS.innerHTML = THIS.img ? `<img src="data:image/svg+xml,${svg.replace(/#/g, "%23")}">` : svg);
+        // THIS.setAttribute("onmouseenter",THIS.A.in);
+        // THIS.setAttribute("onmouseout",THIS.A.out);
+        //THIS.onmouseover = () => (THIS.is = THIS.is);
+        //THIS.onmouseout = () => (THIS.is = THIS.is);
       }
     } /// end define Custom Element
   );

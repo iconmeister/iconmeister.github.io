@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta is="viewport" content="width=device-width, initial-scale=1" />
-    <meta is="Description" content="IconMeister: 200+ SVG icons in one 1024 Bytes Custom Element" />
+    <meta is="Description" content="IconMeister : SVG icons created by one Custom Element" />
     <link id="favicon" rel="shortcut icon" href="" width="32px" />
     <!-- <link rel="prefetch" async href="./icon/clarity.json" as="fetch"> -->
 
@@ -14,240 +14,355 @@
   <body>
     <style>
       body {
-        max-width: 1000px;
+        --maxwidth: 800px;
+        --margintop: 70px;
+        max-width: var(--maxwidth);
         margin: 0 auto;
         font: 14px arial;
         --codebackground: lightgrey;
-        --svg-icons-large-width: 20px;
-        --svg-icons-large-background: grey;
+        --iconwidth: 40px;
+        --iconbackground: grey;
+        --iconbackground-hover: lightgreen;
+        --iconbackground-selected: lightgreen;
       }
-
+      header {
+        position: fixed;
+        top:0;
+        max-height: var(--margintop);
+        background: white;
+        width: var(--maxwidth);
+        border-bottom: 1px solid grey;
+      }
+      header h1 {
+        margin: 2px 0;
+      }
+      section {
+        margin-top: var(--margintop);
+      }
       svg-icon {
         box-sizing: initial;
         display: inline-block;
         position: relative;
-        width: var(--svg-icons-large-width);
-        height: var(--svg-icons-large-width);
+        width: var(--iconwidth);
+        height: var(--iconwidth);
         background: lightcoral;
       }
 
       svg-icon:hover {
         cursor: pointer;
+        background: var(--iconbackground-hover);
       }
 
-      svg-icon svg,
-      svg-icon img {
+      svg-icon {
         box-sizing: border-box;
-        max-width: var(--svg-icons-large-width);
-        background: var(--svg-icons-large-background);
+        max-width: var(--iconwidth);
+        background: var(--iconbackground);
       }
-
+      svg-icon[selected] img {
+        background: var(--iconbackground-selected);
+      }
       .demohtml {
         font-size: 120%;
         vertical-align: middle;
         padding-left: 0.5em;
       }
       .code {
-        margin-left: 1em;
+        /* margin-left: 1em; */
         background: var(--codebackground);
         white-space: pre;
+      }
+
+      h3,
+      h4 {
+        margin-left: 1em;
+      }
+      h3 + div {
+        margin-left: 3em;
+      }
+      h4 {
+        margin: 0.2em;
+        margin-left: 1em;
+      }
+      .iconlist {
+        margin-left: 1em;
+      }
+      #_sectionAvailableIcons {
+        --iconwidth: 20px;
+        padding-right: 1em;
+          max-height: 550px;
+          background: lightgrey;
+          overflow: scroll;
+        }
+      .HRicons {
+        width: 400px;
+        margin: 0 auto;
+      }
+      #_iconcount{
+        font-weight: bold;
+        color:darkred;
+      }
+      #_elementsCode {
+        width: 100%;
+        max-height: 15em;
+        background: lightgreen;
+        font-size: 12px;
       }
     </style>
     <style id="svg-icon-labels">
       svg-icon:hover:after {
         position: absolute;
         left: 0;
-        top: 1;
+        top: -1em;
+        width: 10em;
+        z-index: 99;
         background: white;
         font-size: 12px;
         color: black;
-        content: "img";
+        content: "img:" attr(is);
       }
 
       svg-icon[svg="1"]:hover:after {
-        content: "svg";
+        content: "svg:" attr(is);
       }
     </style>
-    <h1>A multi-purpose W3C Custom Element <b>&lt;svg-icon></b> in <span id="elementsSize"></span> Bytes (gzip)</h1>
-    IconMeister does <b>not</b> Import SVG. IconMeister <b>generates</b> SVG from a configuraton String.
-    <h5>Features:</h5>
-    <ul>
-      <li>Creates SVG or IMG icon</li>
-      <li>Configure with Element attributes</li>
-      <li>Configure with Element properties</li>
-      <li>Configure with CSS Properties</li>
-      <li>Add new icon definitions</li>
-    </ul>
-    <h2>Installing IconMeister</h2>
-    <p>
-      IconMeister is <b>not</b> loaded with NPM. Copy the SCRIPT below to your HTML document. <b>No</b> external files required.
-    </p>
-    <pre class="code">
+    <header>
+      <h1>
+        [Work In Progress] W3C Custom Element: <b>&lt;svg-icon></b>
+        <span hidden> in <span id="elementsSize"></span> Bytes (gzip)</span>
+      </h1>
+      <p>
+        <b>No</b> external SVG, <b>No</b> external JS files. &nbsp;pick icons from <span id=_iconcount></span> Bootstrap, Feather and Clarity icons <span id=_loadstatus></span>
+      </p>
+    </header>
+    <section>
+      <div class="HRicons">
+        <svg-icon is="im"></svg-icon>
+        <svg-icon is="im" stroke="yellow"></svg-icon>
+        <svg-icon is="im" width=".5"></svg-icon>
+        <svg-icon is="im" fill="red"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" scale=".5"></svg-icon>
+        <svg-icon is="im" opacity=".5"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
+      </div>
+      IconMeister does <b>not</b> Import SVG. IconMeister <b>generates</b> SVG from a configuraton String.
+
+      <pre class="code">
 &lt;script>
-  ((
-    icons,
-    {attributes}
+  ((              // created from one IIFE, no global scope pollution
+    icons,        // configurable icons (parameter below)
+    {attributes}  // many attributes, extendible in source code
   )=>{
-      [IconMeister code defining Custom Elements]
+      // IconMeister JS code defining Custom Element &lt;svg-icon>&lt;/svg-icon>
   })({
-    icon1:"box:24;",
-    icon2:"box:20;"
+    "im"    : "box:9;path:m3 3h3v3h-3z", // SVG icon used in this documentation page
+    "icon2" : "box:24;path:M12 12h12 ...",
+    "icon3" : "box:20;path:M0 0A10 ...",
+    ...
   })
 &lt;/script></pre
-    >
-    <h3>Generated IconMeister SCRIPT:</h3>
-    <div id="elementsCode"></div>
-
-    <h2>Using IconMeister</h2>
-    <svg-icon id="i1" is="im"></svg-icon>
-    default "im" icon is a 3x3 square in a 9x9 viewBox:
-    <pre class="code">"im" : "box:9;path:m3 3h3v3h-3z"</pre>
-    <hr />
-    <svg-icon is="text"></svg-icon>
-    <hr />
-    <svg-icon is="dot1"></svg-icon>
-    <svg-icon is="dot2"></svg-icon>
-    <svg-icon is="dot3"></svg-icon>
-    <svg-icon is="dot4"></svg-icon>
-    <svg-icon is="dot5"></svg-icon>
-    <svg-icon is="dot6"></svg-icon>
-    <hr />
-    <span id="$demoicons">
-      <section>
-        <h3>Creates IMG or raw SVG:</h3>
-        <div id="svgorimg">
-          <svg-icon is="im"></svg-icon>
-          <pre class="code">&lt;svg-icon>&lt;img src='data:image/svg+xml,[SVG]'>&lt;svg-icon></pre>
-          All generated SVG in a <b>single</b> IMG tag. Easier for drag/drop interactions
-          <p></p>
-          <svg-icon is="im" svg="1"></svg-icon>
-          <pre class="code">&lt;svg-icon>[SVG]&lt;svg-icon></pre>
-          Inline SVG. Easier for styling SVG with CSS
-        </div>
-      </section>
-      <section>
-        <h3>Configure single Element with Attributes:</h3>
-        <div>
-          <svg-icon is="im"></svg-icon>
-          <svg-icon is="im" stroke="yellow"></svg-icon>
-          <svg-icon is="im" width=".5"></svg-icon>
-          <svg-icon is="im" fill="red"></svg-icon>
-          <svg-icon is="im" rotate="45"></svg-icon>
-          <svg-icon is="im" scale=".5"></svg-icon>
-          <svg-icon is="im" opacity=".5"></svg-icon>
-          <svg-icon is="im" tile="lightgreen"></svg-icon>
-          <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
-          <svg-icon is="im" xy="1 -1"></svg-icon>
-          <svg-icon is="im" w="16" h="16"></svg-icon>
-        </div>
-      </section>
-    </span>
+      >
+    </section>
+    <!------------------------------------------------------------------------->
+    <section>
+      <h3>IconMeister creates a IMG or raw SVG Element:</h3>
+      <div id="svgorimg">
+        <svg-icon is="im"></svg-icon>
+        The SVG is injected as ``data:image/svg`` into an IMG tag:
+        <pre class="code">&lt;svg-icon>&lt;img src='data:image/svg+xml,[SVG]'>&lt;svg-icon></pre>
+        Easier for drag/drop interactions. The whole square IMG is the click target.
+        <p></p>
+        <svg-icon is="im" img=""></svg-icon>
+        The SVG is injected as Inline-SVG:
+        <pre class="code">&lt;svg-icon>&lt;svg >&lt;svg-icon></pre>
+        Easier for styling SVG with CSS. Be aware of
+        <a href="https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/" target="_blank"
+          >pointer-events/click-target issues</a
+        >
+      </div>
+    </section>
+    <section>
+      <h3>Configure single Element with Attributes:</h3>
+      <div id="$demoicons">
+        <svg-icon is="im"></svg-icon>
+        <svg-icon is="im" stroke="yellow"></svg-icon>
+        <svg-icon is="im" width=".5"></svg-icon>
+        <svg-icon is="im" fill="red"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" scale=".5"></svg-icon>
+        <svg-icon is="im" opacity=".5"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
+        <svg-icon is="im" xy="1 -1"></svg-icon>
+        <svg-icon is="im" w="16" h="16"></svg-icon>
+      </div>
+    </section>
     <section>
       <h3>
         Configure single Element with Properties:
       </h3>
-      Mouse over these icons
-      <span id="$coloricons">
-        <svg-icon stroke="yellow" fill="red"></svg-icon>
-        <svg-icon stroke="red" fill="yellow"></svg-icon>
-        <svg-icon stroke="green" fill="pink"></svg-icon>
-        <svg-icon stroke="blue" fill="gold"></svg-icon>
-        <svg-icon stroke="hotpink" fill="teal"></svg-icon>
-      </span>
-      to execute:
-      <pre class="code">
+      <div>
+        Mouse over these icons
+        <span id="$coloricons">
+          <svg-icon stroke="yellow" fill="red"></svg-icon>
+          <svg-icon stroke="red" fill="yellow"></svg-icon>
+          <svg-icon stroke="green" fill="pink"></svg-icon>
+          <svg-icon stroke="blue" fill="gold"></svg-icon>
+          <svg-icon stroke="hotpink" fill="teal"></svg-icon>
+        </span>
+        to execute:
+        <pre class="code">
         demoicon.tile = coloricon.fill; 
         demoicon.stroke = coloricon.stroke;
         demoicon.width = 1; 
         demoicon.scale = 1.7
-      </pre>
+      </pre
+        >
+      </div>
     </section>
     <section>
       <h3>Configure multiple Elements with CSS Properties:</h3>
-      <style>
-        #CSSproperties {
-          counter-reset: icon;
-        }
-      </style>
-      <style id="CSSpropertiesStyle">
-        #CSSproperties > svg-icon {
-          --color: red;
-          --radius: 3;
-          --svg-icon-stroke: var(--color);
-          --svg-icon-width: 0.5;
-          --svg-icon-fill1: green;
-          --svg-icon-rotate: 45;
-          /* prettier-ignore */
-          --svg-icon-rect: "<circle cx='4.5' cy='4.5' r='"var(--radius)"' fill='yellow'/>";
-        }
-      </style>
-      <div displaystyle="CSSpropertiesStyle"></div>
-      <div id="CSSproperties">
-        <svg-icon is="im"></svg-icon>
-        <svg-icon is="im"></svg-icon>
-        <svg-icon is="im"></svg-icon>
-        <svg-icon is="im"></svg-icon>
-        <svg-icon is="im"></svg-icon>
+      <div>
+        <style id="CSSpropertiesStyle">
+          #CSSproperties > svg-icon {
+            --color: red;
+            --radius: 3;
+            --svg-icon-stroke: var(--color);
+            --svg-icon-width: 0.5;
+            --svg-icon-fill: green;
+            --svg-icon-rotate: 45;
+            --svg-icon-rect: "<circle cx='4.5' cy='4.5' r='" var(--radius) "' fill='yellow'/>";
+          }
+        </style>
+        <div displaystyle="CSSpropertiesStyle"></div>
+        <div id="CSSproperties">
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+        </div>
       </div>
     </section>
-    <!-- <section>
-      <h3 id="iconsheader">Available Icons:</h3>
-    </section> -->
     <section>
-      <h3 id="iconsheader">Available Icons:</h3>
-      <div id="Bootstrap" class="iconlist" src="./icon/bootstrap/_icons.json">
-        <style>
-          #Bootstrap {
-            /* --svg-icon-width: 1; */
-            /* --svg-icon-fill: none; */
+      <h3>Example #1 - Scrabble tiles</h3>
+      <div>
+        <p>
+          IconMeister has 3 pre-defined variables (both attribute and property access) you can freely use: v1, v2, v3
+        </p>
+        <style id="CSSscrabbleStyle">
+          #_scrabble svg-icon {
+            background: none; /* cancel global background:grey above*/
+          }
+          #_scrabble {
+            --svg-icon-box: 100;
+            --tile: "<rect width='100%' height='100%' fill='#e6c998' rx='15' />";
+            --letter: "<text x='40' y='75' font-size='70' font-family='arial' text-anchor='middle'>{v1}</text>";
+            --value: "<text x='75' y='80' font-size='25' font-family='arial' text-anchor='middle'>{v2}</text>";
+            --svg-icon-rect: var(--tile) var(--letter) var(--value);
           }
         </style>
-      </div>
-      <div id="Feather" class="iconlist" src="./icon/feather/_icons.json">
-        <style>
-          #Feather {
-            --svg-icon-stroke: blue;
-            --svg-icon-width: 2;
-            --svg-icon-fill: none;
-          }
-        </style>
-      </div>
-      <div id="Clarity" class="iconlist" src="./icon/clarity/_icons.json">
-        <style>
-          #Clarity {
-            --svg-icon-width: 0;
-            --svg-icon-fill: #000;
-          }
-        </style>
+        <div displaystyle="CSSscrabbleStyle"></div>
+        <div displaystyle="_scrabble"></div>
+        <div id="_scrabble">
+          <svg-icon v1="I" v2="2"></svg-icon>
+          <svg-icon v1="c" v2="3"></svg-icon>
+          <svg-icon v1="o" v2="5"></svg-icon>
+          <svg-icon v1="n" v2="9"></svg-icon>
+          <svg-icon v1="M" v2="3"></svg-icon>
+          <svg-icon v1="e" v2="2"></svg-icon>
+          <svg-icon v1="i" v2="1"></svg-icon>
+          <svg-icon v1="s" v2="7"></svg-icon>
+          <svg-icon v1="t" v2="6"></svg-icon>
+          <svg-icon v1="e" v2="4"></svg-icon>
+          <svg-icon v1="r" v2="2"></svg-icon>
+        </div>
       </div>
     </section>
-    <script show>
+    <section>
+      <div id="_codegenerator">
+        <h2>IconMeister Code Generator SCRIPT:</h2>
+        <p id=_codeinfo>
+          IconMeister: <span id="_elementsCodeIMSize">000</span> Bytes +
+          <b><span id="_elementsCodeIconCount"></span></b> icons = <span id="_elementsCodeSize">000</span> Bytes (but
+          only HTTP delivered GZip size counts)
+        </p>
+        <p>
+          Copy this code into the HTML document. In the HEAD if you want the &ltsvg-icon> Custom Elements declared
+          asap<br />
+          Or import it. It is an IIFE, so will not touch the global scope.
+        </p>
+        <p>You can ofcourse rename the iconname to anything you want</p>
+        <textarea id="_elementsCode"></textarea>
+        <div id="_selectedIcons"></div>
+      </div>
+      <div id="_sectionAvailableIcons">
+        <h3 id="iconsheader">Available Icons:</h3>
+        <div id="Bootstrap" class="iconlist" src="icons-bootstrap.json" uri="//icons.getbootstrap.com/">
+          <style>
+            #Bootstrap {
+              /* --svg-icon-width: 1; */
+              /* --svg-icon-fill: none; */
+            }
+          </style>
+        </div>
+        <div id="Feather" class="iconlist" src="icons-feather.json" uri="//feathericons.com/">
+          <style>
+            #Feather {
+              --svg-icon-stroke: blue;
+              --svg-icon-width: 2;
+              --svg-icon-fill: none;
+            }
+          </style>
+        </div>
+        <div id="Clarity" class="iconlist" src="icons-clarity.json" uri="//clarity.design/icons">
+          <style>
+            #Clarity {
+              --svg-icon-width: 0;
+              --svg-icon-fill: #000;
+            }
+          </style>
+        </div>
+      </div>
+    </section>
+    <hr />
+    <section>
+      <h3>More Meisters</h3>
+      <div>
+        <a href="cardmeister.github.io" target="blank">CardMeister</a> ,
+        <a href="flagmeister.github.io" target="blank">FlagMeister</a> ,
+        <a href="chessmeister.github.io" target="blank">ChessMeister</a> ,
+        <a href="iconmeister.github.io" target="blank">IconMeister</a>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    </section>
+    <script>
       let icons = document.getElementsByTagName("svg-icon"); // keep a live nodelist
-      let API = document.querySelector("svg-icon"); // any <svg-icon> is the API
 
       const redrawIcon = (icon) => (icon.is = icon.is);
       const redrawIcons = (icons) => [...icons].map(redrawIcon); // update all existing icons
-      function addIcon(name, str) {
-        API.icons[name] = str;
-        redrawIcons(icons);
+
+      function addIconMeisterIcon(name, str, redraw = false) {
+        let iconsAPI = document.querySelector("svg-icon").api[0]; //0 = ICONs, 1 = FUNCs
+        iconsAPI[name] = str;
+        if (redraw) redrawIcons(icons);
       }
-      // addIcon(
-      //   "iconmeister",
-      //   "box:24;strokewidth:1;stroke:red;path:M3 3h12v12h-12zM6 6h12v12h-12zM9 9h12v12h-12z;rect:<rect width='24' height='24' rx='5' fill='green'/>"
-      // );
-      // addIcon(
-      //   "f-globe",
-      //   "box:24;path:M2 12a10 10 0 1 020 0a10 10 0 1 0 -20 0M2 12L22 12M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-      // );
+      addIconMeisterIcon("im", "box:9;path:m3 3h3v3h-3z");
     </script>
     <script>
       window.onload = () => {
+        let totaliconcount=0;
         let demoicons = $demoicons.getElementsByTagName("svg-icon");
         let docicons = $demoicons.getElementsByClassName("demohtml");
 
+        const JSONstring = (obj) => JSON.stringify(obj);
         const setProperties = (obj, propes) => Object.assign(obj, props);
         const setAttributes = (obj, attrs) => Object.entries(attrs).map((entry) => obj.setAttribute(...entry));
-        const getAttribute = (obj, attr) => obj.getAttribute(attr);
         const createElement = (tag, attributes = {}) => (
           (tag = document.createElement(tag)), setAttributes(tag, attributes), tag
         );
@@ -256,32 +371,154 @@
         const addHTML = (el, html, type = "afterend") => el.insertAdjacentHTML(type, html);
         const escapeHTML = (html) => html.replace(/\</g, "&lt;");
         const PRE = (html) => `<div class=code>${html}</div>`;
+
+        //todo same function
+        const openingTag = (icon) => escapeHTML(icon.outerHTML.match("<svg-icon .*?>")[0]);
         const iconHTML = (icon) => escapeHTML(icon.outerHTML.split('">')[0]);
+
         const iconDOC = (icon) => addHTML(icon, `<span class="demohtml">${iconHTML(icon)}"><br></span>`);
         const documentIcons = () => removeNodes(docicons) | [...demoicons].forEach(iconDOC);
 
+        const saveLocalStorage = (selected) =>
+          localStorage.setItem(
+            "iconmeister",
+            JSONstring({
+              selected,
+            })
+          );
+        const loadLocalStorage = () => {
+          let obj = JSON.parse(localStorage.getItem("iconmeister")) || false;
+          console.log(21,obj)
+          if (obj) obj.selected.forEach(appendSelectedIconByName);
+          else {
+            appendSelectedIconByName("bi-gear");
+            appendSelectedIconByName("f-settings");
+            appendSelectedIconByName("cl-core-cog-line");
+          }
+        };
+
+        const createIconElement = ([is, attrs]) => createElement("svg-icon", { is, attrs });
+        const getSelectedIcons = () => [..._selectedIcons.querySelectorAll("svg-icon[selected]")];
+        const getSelectedAvailableIcons = () => [..._sectionAvailableIcons.querySelectorAll("svg-icon[selected]")];
+
+        const updateSelectedIcons = () => {
+          _selectedIcons.innerHTML = "";
+          _selectedIcons.append(...getSelectedAvailableIcons().map(appendSelectedIcon));
+          redrawIcons(selected);
+        };
+
+        const appendSelectedIcon = (icon) => {
+          if (!icon) return;
+          const removeSelected = () => {
+            icon.removeAttribute("selected");
+            if (icon.selectedIcon) icon.selectedIcon.remove();
+            setElementsCode();
+          };
+          if (icon.toggleAttribute("selected")) {
+            newicon = icon.cloneNode(true);
+            icon.selectedIcon = newicon;
+            newicon.onclick = removeSelected;
+            _selectedIcons.append(newicon);
+          } else {
+            removeSelected();
+          }
+          setElementsCode();
+        };
+
+        const appendSelectedIconByName = (name) => {
+          let icons = [...document.querySelectorAll(`svg-icon[is="${name}"]`)];
+          console.log(`adding ${icons.length} icons`);
+          icons.forEach(appendSelectedIcon);
+        };
+
         documentIcons();
 
-        console.log(icons.length, "icons", API.I);
         document.querySelectorAll("[displaystyle]").forEach((styleElement) => {
-          addHTML(styleElement, PRE(escapeHTML(getElementById(getAttribute(styleElement, "displaystyle")).innerHTML)));
+          const attr = styleElement.getAttribute("displaystyle");
+          const tag = getElementById(attr);
+          const html = tag.innerHTML;
+          let new_html = "";
+          if (tag.nodeName == "STYLE") {
+            new_html = PRE(escapeHTML(html));
+          } else {
+            let openingTags = [...tag.children].map(openingTag).join`\n`;
+            new_html = PRE(openingTags).replace(/"/g, "");
+          }
+          addHTML(styleElement, new_html);
         });
+
+        const loadStatus = (txt="") => _loadstatus.innerHTML=txt;
 
         function loadIcons(list) {
           const file = list.getAttribute("src");
-          fetch(file, { mode: "cors" })
+          loadStatus(`Loading: ${file}`);
+          return new Promise((resolve, reject) => {
+            fetch(file, { mode: "cors" })
             .then((response) => response.json())
             .then((response) => {
-              const entries = Object.entries(response).slice(0, 13);
-              const html = `<h3>${entries.length} ${list.id} Icons</h3>`;
-              entries.map(([is, str]) => addIcon(is, str));
-              addHTML(list, html, "beforebegin");
-              const newicons = entries.map(([is, str]) => createElement("svg-icon", { is, svg: "1" }));
-              list.append(...newicons);
-              newicons.map((icon) => (icon.is = icon.is));
-            });
+              const uri = list.getAttribute("uri");
+              const entries = Object.entries(response).slice(0, 1999);
+              const html = `<h4>${entries.length} ${list.id} Icons <span><a href='${uri}'>${uri}</a></span></h4>`;
+              console.log(entries.length,uri)
+              totaliconcount += entries.length;
+              _iconcount.innerHTML = totaliconcount;
+              setTimeout(()=>{
+                  loadStatus(`Parsing ${entries.length} icons from ${file}`);
+                  console.time(list.id);
+                  entries.map(([is, str]) => addIconMeisterIcon(is, str));
+                  addHTML(list, html, "beforebegin");
+                  const newicons = entries.map(createIconElement);
+                  const fragment= document.createDocumentFragment();
+                  fragment.append(...newicons);
+                  list.append(fragment);
+                  redrawIcons(icons);
+                  list.onclick = (evt) => appendSelectedIcon(evt.target.closest("svg-icon"));
+                  resolve(list);
+                })
+              });
+          });
         }
-        [...document.getElementsByClassName("iconlist")].forEach(loadIcons);
+
+        const fetchFile = (file, callback) => {
+          fetch(file)
+            .then((response) => response.text())
+            .then(callback);
+        };
+
+        let elementsCodeSource = "";
+        const setElementsCode = (txt = elementsCodeSource) => {
+          elementsCodeSource = txt;
+          _elementsCodeIMSize.innerHTML = txt.length;
+          let iconsJSON = {};
+          let iconNames = getSelectedIcons().map(({ is, api }) => {
+            iconsJSON[is] = api[0][is];
+            return is;
+          });
+          saveLocalStorage(iconNames);
+          _elementsCodeIconCount.innerHTML = Object.keys(iconsJSON).length;
+          const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
+          let iconsSTR = `(\n${addLineBreaks(iconsJSON)})`;
+          let formattedIconsSTR = 0;
+          let IMscript = `&lt;script>\n${txt}\n&lt;/script>`.replace(/\(\{\}\)/, iconsSTR);
+          _elementsCode.innerHTML = IMscript;
+          _elementsCode.style.height = "";
+          _elementsCode.style.height = _elementsCode.scrollHeight + "px";
+          _elementsCodeSize.innerHTML = IMscript.length;
+          _elementsCode.scrollTop = _elementsCode.scrollHeight;
+        };
+
+        Promise.all([...document.getElementsByClassName("iconlist")].map(loadIcons)).then((lists) => {
+          fetchFile("elements.iconmeister.min.js", (response) => {
+            elementsCodeSource = response;
+            loadLocalStorage();
+            fetchFile("gzip-bundle", (response) => {
+              console.log(response.length, "bytes in gzip-bundle");
+              //              elementsSize.innerHTML = response.length;
+              loadStatus();
+            });
+            _codeinfo.scrollIntoView(true);
+          });
+        });
 
         $coloricons.querySelectorAll("svg-icon").forEach((icon) => {
           const demoicons = $demoicons.querySelectorAll("[is=im]");
@@ -296,16 +533,6 @@
           icon.onmouseover = () => changeIcons(setIcon);
           icon.onmouseout = () => changeIcons(unsetIcon);
         });
-
-        const fetchFile = (file, callback) => {
-          fetch(file)
-            .then((response) => response.text())
-            .then(callback);
-        };
-        fetchFile("gzip-bundle", (response) => {
-          elementsSize.innerHTML = response.length;
-        });
-        // if (showCode) showCode.innerHTML = PRE(escapeHTML(response.replace(/,/g, ",\n")));
       };
     </script>
   </body>
