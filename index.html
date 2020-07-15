@@ -15,7 +15,7 @@
     <style>
       body {
         --maxwidth: 800px;
-        --margintop: 85px;
+        --margintop: 95px;
         --border: 1px solid grey;
         max-width: var(--maxwidth);
         max-height: 100vh;
@@ -28,10 +28,6 @@
         --iconbackground-selected: lightgreen;
       }
       header {
-        position: fixed;
-        top: 0;
-        max-height: max-content;
-        background: white;
         width: var(--maxwidth);
         border-bottom: var(--border);
       }
@@ -39,7 +35,6 @@
         margin: 2px 0;
       }
       main {
-        margin-top: var(--margintop);
         width: var(--maxwidth);
         overflow-x: hidden;
         overflow-y: hidden;
@@ -52,10 +47,7 @@
         scroll-margin: var(--margintop); */
       }
       footer {
-        position: fixed;
-        bottom: 0;
         width: var(--maxwidth);
-        background: white;
         border-top: var(--border);
         padding: 0.5em 0;
       }
@@ -154,13 +146,19 @@
         [Work In Progress] W3C Custom Element: <b>&lt;svg-icon></b>
         <span hidden> in <span id="elementsSize"></span> Bytes (gzip)</span>
       </h1>
-      <span id="_loadstatus"></span>
+      <p>
+        <a href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
+        <a href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js"
+          >sourcecode</a
+        >
+        <span id="_loadstatus"></span>
+      </p>
       <p>
         <b>No</b> external SVG, <b>No</b> external JS files. &nbsp;pick icons from
         <span id="_iconcount"></span> Bootstrap, Feather and Clarity icons
       </p>
     </header>
-    <main id=_main>
+    <main id="_main">
       <section>
         <div class="HRicons">
           <svg-icon is="im"></svg-icon>
@@ -456,8 +454,8 @@
           if (tag.nodeName == "STYLE") {
             new_html = PRE(escapeHTML(html));
           } else {
-            let openingTags = [...tag.children].map(openingTag).join`\n`;
-            new_html = PRE(openingTags).replace(/"/g, "");
+            let openingTags = "\t" + [...tag.children].map(openingTag).join`\n\t`;
+            new_html = PRE(openingTags).replace(/"/g, "") + " \n\n";
           }
           addHTML(styleElement, new_html);
         });
@@ -466,13 +464,13 @@
 
         function loadIcons(list) {
           const file = list.getAttribute("src");
-          loadStatus(`<br>Loading: ${file}`);
+          loadStatus(`Loading: ${file}`);
           return new Promise((resolve, reject) => {
             fetch(file, { mode: "cors" })
               .then((response) => response.json())
               .then((response) => {
                 const uri = list.getAttribute("uri");
-                const entries = Object.entries(response).slice(0, 1999);
+                const entries = Object.entries(response).slice(0, 19);
                 const html = `<h4>${entries.length} ${list.id} Icons <span><a href='${uri}'>${uri}</a></span></h4>`;
                 addHTML(list, html, "beforebegin");
                 console.log(entries.length, uri);
@@ -482,7 +480,7 @@
                 const appendIcons = (start) => {
                   const end = start + 50;
                   const addicons = entries.slice(start, end);
-                  loadStatus(`<br>Parsing ${start}...${end} of ${entries.length} icons from ${file}`);
+                  loadStatus(`Parsing ${start}...${end} of ${entries.length} icons from ${file}`);
                   addicons.map(([is, str]) => addIconMeisterIcon(is, str));
                   const newicons = addicons.map(createIconElement);
                   list.append(...newicons);
