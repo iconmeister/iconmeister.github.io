@@ -470,7 +470,7 @@
               .then((response) => response.json())
               .then((response) => {
                 const uri = list.getAttribute("uri");
-                const entries = Object.entries(response).slice(0, 19);
+                const entries = Object.entries(response).slice(0, 1999);
                 const html = `<h4>${entries.length} ${list.id} Icons <span><a href='${uri}'>${uri}</a></span></h4>`;
                 addHTML(list, html, "beforebegin");
                 console.log(entries.length, uri);
