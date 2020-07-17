@@ -451,11 +451,11 @@
           const tag = getElementById(attr);
           const html = tag.innerHTML;
           let new_html = "";
-          if (tag.nodeName == "STYLE") {
+          if (tag.nodeName == "STYLE") { 
             new_html = PRE(escapeHTML(html));
           } else {
             let openingTags = "\t" + [...tag.children].map(openingTag).join`\n\t`;
-            new_html = PRE(openingTags).replace(/"/g, "") + " \n\n";
+            new_html = PRE(openingTags).replace(/"/g, "") + "\n\n";
           }
           addHTML(styleElement, new_html);
         });
