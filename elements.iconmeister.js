@@ -26,12 +26,14 @@ const $ICONS = {
     v2: "",//optional attribute
     v3: "",//optional attribute
     is: "", // ICONs[is] iconstring definition
-    border: "",
-    filter: "",
     img: 1, // create img (default) or raw SVG
     box: 9, // viewbox='0 0 n n' parsed from Icon string: "box:24;path:..."
+    
     rect: "<rect width='100%' height='100%' fill='{tile}' {border}/>",
+    border: "",
+    filter: "",
     tile: "none",
+
     fill: "none",
     width: 1,
     scale: 1,
@@ -83,7 +85,9 @@ const $ICONS = {
                 //----------------------------------------------------------------------
               ) // end defineProperty
           ), // end .map((attr) one time init
+          
         pars, // parse icon string setting properties (box:24)
+
         icon = (ICONS[THIS.is] || "").split`;`.map(
           (cmd) => (
             ([func, pars] = cmd.trim().split`:`),
@@ -92,7 +96,9 @@ const $ICONS = {
               : cmd // no command exists, return (bare SVG) string
           )
         ).join``,
+
         halfbox = THIS.box / 2, // replace saves 2 GZbytes, adds 26 Minified bytes
+
         svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${THIS.w || THIS.box} ${THIS.h || THIS.box}'>${
           THIS.rect
         }<g stroke-width='{width}' stroke='{stroke}' fill='{fill}' opacity='{opacity}' filter='{filter}' transform='translate({xy}) matrix({scale} 0 0 {scale} ${
@@ -104,6 +110,7 @@ const $ICONS = {
           // /{([^{}\s]*)}/g,//! seems to work also
           (sub, val) => THIS[val]
         )
+
       ) {
         return (THIS.innerHTML = THIS.img ? `<img src="data:image/svg+xml,${svg.replace(/#/g, "%23")}">` : svg);
         // THIS.setAttribute("onmouseenter",THIS.A.in);
