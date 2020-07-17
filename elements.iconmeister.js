@@ -1,17 +1,12 @@
-
 const $ICONS = {
   //! terser rewrites $ICONS as first parameter for IIFE
   // im: "box:9;path:m3 3h3v3h-3z",
   // text: "box:100;fill:red;<text x='45' y='75' font-size='40' font-family='arial' text-anchor='middle'>{is}</text>",
   // dot1: "box:10;path:M5 5m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0,fill='red';scale:.2",
-  // dot2: "top:{d1}",
-  // dot3: "box:10;icon:dot2",
-  // dot4: "icon:dot3",
-  // dot5: "box:10;icon:dot4;icon:dot1",
-  // dot6: "box:10;icon:dot5",
 };
 
 !((
+  // IIFE
   ICONS,
   FUNCs = {
     path: (d, attrs = "") => `<path d='${d}' ${attrs}/>`,
@@ -20,17 +15,17 @@ const $ICONS = {
     // polyline: points => `<polyline points='${points}'/>`,
     // polygon: points => `<polygon points='${points}'/>`,
     // line: (x1, y1, x2, y2) => `<line x1='${x1}' y1='${y1}' x2='${x2}' y2='${y2}'/>`,
-    // rect: (x, y, w, h, radius = 0, attrs = "") => `<rect width='${w}' height='${h}' x='${x}' y='${y}' rx='${radius}' ${attrs}/>`,
-  }, // Functions
+    // rect: (x, y, w, h, r = 0, a = "") => `<rect width='${w}' height='${h}' x='${x}' y='${y}' rx='${r}' ${a}/>`,
+  },
   Attrs = {
     // Custom Element Observed Attributes
-    v1: "",//optional attribute
-    v2: "",//optional attribute
-    v3: "",//optional attribute
+    v1: "", //optional attribute
+    v2: "", //optional attribute
+    v3: "", //optional attribute
     is: "", // ICONs[is] iconstring definition
     img: 1, // create img (default) or raw SVG
     box: 9, // viewbox='0 0 n n' parsed from Icon string: "box:24;path:..."
-    
+
     rect: "<rect width='100%' height='100%' fill='{tile}' {border}/>",
     border: "",
     filter: "",
@@ -46,8 +41,6 @@ const $ICONS = {
     w: 0,
     h: 0,
     top: "",
-    // in: "console.log(21,this.parentNode,this.parentNode.scale=1.2,this.parentNode.stroke='green')",
-    // out: "console.log(22,this.parentNode.scale=1,this.parentNode.stroke='blue')",
     api: [ICONS, FUNCs], // Custom Element is API for ICONs and FUNCs, add icons in getElementById(x).$[0]
   } // Attributes
 ) => {
@@ -83,23 +76,23 @@ const $ICONS = {
                 },
                 //----------------------------------------------------------------------
                 //! Code-golf abuse non used 4th parameter: Setter CMDs for PARSE "box:36;fill:black"
-                (FUNCs[attr] = (t) => (THIS.A[attr] = t))
+                (FUNCs[attr] = (t) => ((THIS.A[attr] = t),""))// Setter; Return "" to not include ghost chars in SVG
                 //----------------------------------------------------------------------
               ) // end defineProperty
           ), // end .map((attr) one time init
-          
-        pars, // parse icon string setting properties (box:24)
+
+        pars, // Variable declaration (parameters from icon string "box:24")
 
         icon = (ICONS[THIS.is] || "").split`;`.map(
           (cmd) => (
             ([func, pars] = cmd.trim().split`:`),
             FUNCs[func]
-              ? FUNCs[func].apply(THIS, pars.split`,`) //execute
+              ? FUNCs[func].apply(THIS, pars.split`,`) //execute path:, box:, stroke: function
               : cmd // no command exists, return (bare SVG) string
           )
         ).join``,
 
-        halfbox = THIS.box / 2, // replace saves 2 GZbytes, adds 26 Minified bytes
+        halfbox = THIS.box / 2, // replace halfbox saves 2 GZbytes, but is less reabable, slower and adds 26 Minified bytes
 
         svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${THIS.w || THIS.box} ${THIS.h || THIS.box}'>${
           THIS.rect
@@ -109,16 +102,11 @@ const $ICONS = {
           THIS.top
         }</svg>`.replace(
           /{\s?([^{}\s]*)\s?}/g, //! original regexp
-          // /{([^{}\s]*)}/g,//! seems to work also
+          // /{([^{}\s]*)}/g,//! seems to work also, needs more testing
           (sub, val) => THIS[val]
         )
-
       ) {
-        return (THIS.innerHTML = THIS.img ? `<img src="data:image/svg+xml,${svg.replace(/#/g, "%23")}">` : svg);
-        // THIS.setAttribute("onmouseenter",THIS.A.in);
-        // THIS.setAttribute("onmouseout",THIS.A.out);
-        //THIS.onmouseover = () => (THIS.is = THIS.is);
-        //THIS.onmouseout = () => (THIS.is = THIS.is);
+        return (THIS.innerHTML = THIS.img == 1 ? `<img src="data:image/svg+xml,${svg.replace(/#/g, "%23")}">` : svg);
       }
     } /// end define Custom Element
   );
