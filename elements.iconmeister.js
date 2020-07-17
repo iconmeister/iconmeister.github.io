@@ -1,3 +1,4 @@
+
 const $ICONS = {
   //! terser rewrites $ICONS as first parameter for IIFE
   // im: "box:9;path:m3 3h3v3h-3z",
@@ -9,6 +10,7 @@ const $ICONS = {
   // dot5: "box:10;icon:dot4;icon:dot1",
   // dot6: "box:10;icon:dot5",
 };
+
 !((
   ICONS,
   FUNCs = {
