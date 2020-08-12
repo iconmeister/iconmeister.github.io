@@ -178,7 +178,7 @@
       </p>
       <p>
         <b>No</b> external SVG, <b>No</b> external JS files. &nbsp;pick from <span class="iconcount"></span> Bootstrap,
-        Feather, FontAwesome, Eva and Clarity icons, or add your own SVG
+        Feather, FontAwesome, Material, Eva and Clarity icons, or add your own SVG
       </p>
     </header>
     <main id="_main">
@@ -383,6 +383,15 @@
           <span class="loadstatus"></span>
         </h3>
         <div id="_sectionAvailableIcons">
+          <div id="MaterialAction" class="iconlist" src="icons-material-action.json" uri="https://material.io/resources/icons/?style=baseline">
+            <style>
+              #MaterialAction {
+                /* --svg-icon-stroke: blue; */
+                --svg-icon-width: .1;
+                --svg-icon-fill: black;
+              }
+            </style>
+          </div>
           <div id="Feather" class="iconlist" src="icons-feather.json" uri="//feathericons.com/">
             <style>
               #Feather {
@@ -481,11 +490,13 @@ Object.entries( icon.api[0] ).forEach( ([name,definition]) => console.log(name) 
         <div>
           <p>Only <code>path:</code> is defined as function:</p>
           <img src="https://i.imgur.com/SERU7Lm.jpg" />
-          <p>additional functions can be added with:</p>
+
+          <p>Uncomment/add pre-defined functions</p>
+          <p>Additional functions can be added <b>dynamically</b> with:</p>
           <pre class="code">
 
 let icon = document.querySelector("svg-icon");
-icon.api[1]["newFunction"] = (par1) => `[valid SVG]`;
+icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functions above
           </pre>
         </div>
       </section>
@@ -505,7 +516,7 @@ icon.api[1]["newFunction"] = (par1) => `[valid SVG]`;
           title="PayPal - The safer, easier way to pay online!"
           alt="Donate with PayPal button"
         />
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        <!-- <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" /> -->
       </form>
 
       <h3>More Meisters:</h3>
@@ -627,8 +638,9 @@ icon.api[1]["newFunction"] = (par1) => `[valid SVG]`;
 
         function loadIcons(list) {
           const file = list.getAttribute("src");
+          const isLocal=document.location.hostname === "localhost";
           setInnerHTML(`Loading: ${file}`);
-          // if (!file.includes("eva")) return;
+          if (isLocal && !file.includes("material")) return;
           try{
           return new Promise((resolve, reject) => {
             fetch(file, { mode: "cors" })
@@ -637,7 +649,7 @@ icon.api[1]["newFunction"] = (par1) => `[valid SVG]`;
                 const uri = list.getAttribute("uri");
                 const entries = Object.entries(response).slice(
                   0,
-                  document.location.hostname === "localhost" ? 4999 : 1999
+                  isLocal ? 4999 : 1999
                 );
                 const html = `<h4>${entries.length} ${list.id} Icons <span><a href='${uri}'>${uri}</a></span></h4>`;
                 addHTML(list, html, "beforebegin");
