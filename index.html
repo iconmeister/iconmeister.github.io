@@ -101,7 +101,7 @@
         color: whitesmoke;
       }
       .loadstatus {
-        font-size:20px;
+        font-size: 20px;
         font-weight: bold;
         color: crimson;
       }
@@ -412,72 +412,12 @@ Preparing all 5000+ icons takes app. THREE minutes (yes, this could be optimized
           <input type="text" id="searchBox" placeholder="[search all icons]" />
         </h3>
         <div id="_sectionAvailableIcons">
-          <div id="Material" class="iconlist" src="icons-material.json" uri="https://material.io/resources/icons">
-            <style>
-              #Material {
-                /* --svg-icon-stroke: blue; */
-                /* --svg-icon-width: .1; */
-                --svg-icon-fill: black;
-              }
-            </style>
-          </div>
-          <div id="Feather" class="iconlist" src="icons-feather.json" uri="//feathericons.com/">
-            <style>
-              #Feather {
-                /* --svg-icon-stroke: blue; */
-                --svg-icon-width: 2;
-                --svg-icon-fill: none;
-              }
-            </style>
-          </div>
-
-          <div
-            id="FontAwesomeRegular"
-            class="iconlist"
-            src="icons-fontawesome-regular.json"
-            uri="//fontawesome.com/icons"
-          >
-            <style>
-              #FontAwesomeRegular {
-                /* --svg-icon-width: 0.1; */
-                /* --svg-icon-fill: darkred; */
-              }
-            </style>
-          </div>
-          <div id="FontAwesomeSolid" class="iconlist" src="icons-fontawesome-solid.json" uri="//fontawesome.com/icons">
-            <style>
-              #FontAwesomeSolid {
-                /* --svg-icon-width: .1; */
-              }
-            </style>
-          </div>
-
-          <div id="Clarity" class="iconlist" src="icons-clarity.json" uri="//clarity.design/icons">
-            <style>
-              #Clarity {
-                --svg-icon-width: 0.1;
-                --svg-icon-fill: #000;
-              }
-            </style>
-          </div>
-          <div id="Bootstrap" class="iconlist" src="icons-bootstrap.json" uri="//icons.getbootstrap.com/">
-          </div>
-          <div id="EvaFill" class="iconlist" src="icons-eva-fill.json" uri="//akveo.github.io/eva-icons/">
-            <style>
-              #EvaFill {
-                --svg-icon-width: 0.1;
-                /* --svg-icon-fill: red; */
-              }
-            </style>
-          </div>
-          <div id="EvaOutline" class="iconlist" src="icons-eva-outline.json" uri="//akveo.github.io/eva-icons/">
-            <style>
-              #EvaOutline {
-                --svg-icon-width: 0.1;
-                --svg-icon-fill: black;
-              }
-            </style>
-          </div>
+          <div id="Material" class="iconlist" src="icons-material.json" uri="https://material.io/resources/icons"></div>
+          <div id="Feather" class="iconlist" src="icons-feather.json" uri="//feathericons.com/"></div>
+          <div id="FontAwesom" class="iconlist" src="icons-fontawesome.json" uri="//fontawesome.com/icons"></div>
+          <div id="Clarity" class="iconlist" src="icons-clarity.json" uri="//clarity.design/icons"></div>
+          <div id="Bootstrap" class="iconlist" src="icons-bootstrap.json" uri="//icons.getbootstrap.com/"></div>
+          <div id="Eva" class="iconlist" src="icons-eva.json" uri="//akveo.github.io/eva-icons/"></div>
         </div>
       </section>
       <section>
@@ -608,8 +548,12 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           }
         };
 
-        const createIconElement = ([is, attrs]) => createElement("svg-icon", { is, title: is + "\n\n" + attrs });
-        const getSelectedIcons = (attr="[selected]") => [..._selectedIcons.querySelectorAll(`svg-icon${attr}`)];
+        const createIconElement = ([is, attrs]) => createElement("svg-icon", { 
+          is, 
+          attrs, //used to highlight iconcode in generator
+          title: is + "\n\n" + attrs 
+        });
+        const getSelectedIcons = (attr = "[selected]") => [..._selectedIcons.querySelectorAll(`svg-icon${attr}`)];
         const getSelectedAvailableIcons = () => [..._sectionAvailableIcons.querySelectorAll("svg-icon[selected]")];
 
         const updateSelectedIcons = () => {
@@ -722,7 +666,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
                     console.time(list.id);
                     appendIcons(0);
                   });
-                });
+                }).catch(e=>console.error(file,e));
             });
           } catch (e) {
             console.error(file, e);
@@ -739,7 +683,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
           let iconsSTR = `(\n${addLineBreaks(iconsJSON)})`;
           let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(/\(\{\}\)/, iconsSTR);
-          _elementsCode.innerHTML = IMscript;
+          intoElement.innerHTML = IMscript;
           return IMscript;
         };
 
@@ -766,6 +710,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
             _elementsCode.focus();
             _elementsCode.setSelectionRange(start - 3, start + highlight.length);
             _elementsCode.scrollTop = _elementsCode.scrollHeight;
+            console.warn(highlight)
           }
         };
 
@@ -781,7 +726,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
             setInnerHTML();
             still_loading.remove();
             setElementsCode();
-            
+
             // });
             //_codeinfo.scrollIntoView(true);
           });
@@ -820,7 +765,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           search.innerHTML = css;
         });
       };
-      var excludeJSONfile = "oot";
+      var excludeJSONfile = "";
     </script>
     <script id="IconMeisterAll"></script>
   </body>
