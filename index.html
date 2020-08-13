@@ -101,6 +101,8 @@
         color: whitesmoke;
       }
       .loadstatus {
+        font-size:20px;
+        font-weight: bold;
         color: crimson;
       }
       h3,
@@ -185,6 +187,8 @@
         [WIP] W3C Custom Element/Web Component: <b class="code">&lt;svg-icon is=iconname>&lt;/svg-icon></b>
         <span hidden> in <span id="elementsSize"></span> Bytes (gzip)</span>
       </h1>
+      <p class="loadstatus"></p>
+
       <p id="_links">
         <a href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
         <a href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js"
@@ -192,9 +196,8 @@
         >
         -
         <a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/"
-          >Play with example icons in JSFiddle playground</a
+          >Play with example icons in a JSFiddle playground</a
         >
-        <span class="loadstatus"></span>
       </p>
       <p>
         <b>No</b> external SVG, <b>No</b> external JS files. &nbsp;pick from <span class="iconcount"></span> Bootstrap,
@@ -234,7 +237,7 @@
           <li>All code + icons bundled in one file makes for better GZip compression</li>
           <li>Is <b>under 800 Bytes GZipped</b> (excluding icons)</li>
           <li>NO! There is no NPM package, you have to assemble the script yourself, see the Script Generator below</li>
-          <li><a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">run in JSFiddle playground</a></li>
+          <li><a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">run in a JSFiddle playground</a></li>
         </ul>
 
         <h3>Layout of the IconMeister code:</h3>
@@ -398,6 +401,7 @@
             <b><span id="_elementsCodeIconCount"></span></b> icons = <span id="_elementsCodeSize">000</span> Bytes (but
             only HTTP delivered GZip size counts)
           </p>
+          <p class="loadstatus"></p>
           <textarea spellcheck="false" id="_elementsCode">
 Preparing all 5000+ icons takes app. THREE minutes (yes, this could be optimized). You can scroll the red area below, and view all icons while loading. Mouse-over an icon to see its title and SVG definition string. Once loading is done, select icons and this textarea will contain all JS code required. Your selected icons are stored in LocalStorage</textarea
           >
@@ -406,7 +410,6 @@ Preparing all 5000+ icons takes app. THREE minutes (yes, this could be optimized
         <h3 id="iconsheader">
           <span class="iconcount"></span> available Icons:
           <input type="text" id="searchBox" placeholder="[search all icons]" />
-          <span class="loadstatus"></span>
         </h3>
         <div id="_sectionAvailableIcons">
           <div id="Material" class="iconlist" src="icons-material.json" uri="https://material.io/resources/icons">
@@ -735,7 +738,9 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
         const createIconMeisterSCRIPTcontent = (intoElement, iconsJSON) => {
           const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
           let iconsSTR = `(\n${addLineBreaks(iconsJSON)})`;
-          _elementsCode.innerHTML = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(/\(\{\}\)/, iconsSTR);
+          let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(/\(\{\}\)/, iconsSTR);
+          _elementsCode.innerHTML = IMscript;
+          return IMscript;
         };
 
         let elementsCodeSource = "";
@@ -750,7 +755,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           saveLocalStorage(iconNames);
           _elementsCodeIconCount.innerHTML = Object.keys(iconsJSON).length;
 
-          createIconMeisterSCRIPTcontent(_elementsCode, iconsJSON);
+          let IMscript = createIconMeisterSCRIPTcontent(_elementsCode, iconsJSON);
 
           _elementsCode.style.height = "";
           _elementsCode.style.height = _elementsCode.scrollHeight + "px";
