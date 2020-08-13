@@ -2,8 +2,12 @@
 
 **No** external SVG files, **No** dependencies
 
-# https://iconmeister.github.io
+# See https://iconmeister.github.io
 
 ````
 <svg-icon is=settings stroke=red rotate=45 ></svg-icon>
-````" " 
+````
+
+![](./iconmeister_search_load_icon.jpg)
+
+# See https://iconmeister.github.io
