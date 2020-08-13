@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta is="viewport" content="width=device-width, initial-scale=1" />
-    <meta is="Description" content="IconMeister : SVG icons created by one Custom Element" />
+    <title>
+      7000+ SVG icons in one &lt;svg-icon> Custom Element/Web Component file, No Dependencies, No external SVG files
+    </title>
+    <meta
+      is="Description"
+      content="&lt;svg-icon> IconMeister Custom Element/Web Component: Cherry pick SVG icons from 7000+ Bootstrap, IBM Carbon, Clarity, Eva, Feather, Font Awesome, Linear, Google Material, Radix, Vaadin Icon sets. No Dependencies, No external SVG files, No Icon Sprite"
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'><rect width='100%' height='100%' fill='gold'/><text x='1' y='15.5'>IM</text></svg>"
@@ -11,7 +17,6 @@
     />
     <!-- <link rel="prefetch" async href="./icon/clarity.json" as="fetch"> -->
 
-    <title>SVG icons in one Custom Element/Web Component</title>
     <script id="elements" src="elements.iconmeister.js"></script>
     <script defer src="https://hexedland.com/meisterbanner.js"></script>
   </head>
@@ -19,7 +24,9 @@
   <body>
     <style>
       body {
-        --maxwidth: 1200px;
+        /* --maximumIconSetHeigth:95px; */
+        /* --maxHeightAllIcons:700px; */
+        --maxwidth: 1400px;
         --margintop: 95px;
         --border: 1px solid grey;
         max-width: var(--maxwidth);
@@ -47,17 +54,18 @@
         /* height: 100vh; */
         /* scroll-snap-type: y mandatory; */
       }
-      section {
-        /* margin-top: var(--margintop); */
-        /*scroll-snap-align: start;
+      /* section { */
+      /* margin-top: var(--margintop); */
+      /*scroll-snap-align: start;
         scroll-margin: var(--margintop); */
-      }
+      /* } */
       footer {
         width: var(--maxwidth);
         border-top: var(--border);
         padding: 0.5em 0;
       }
       svg-icon {
+        contain: strict style;
         box-sizing: initial;
         display: inline-block;
         position: relative;
@@ -105,6 +113,7 @@
         font-weight: bold;
         color: crimson;
       }
+      summary,
       h3,
       h4 {
         margin-top: 2em;
@@ -113,6 +122,7 @@
       h3 + div {
         margin-left: 3em;
       }
+      summary,
       h4 {
         margin: 0.2em;
         margin-left: 1em;
@@ -124,11 +134,13 @@
         margin: 0.1em;
       }
       #_sectionAvailableIcons {
-        --iconwidth: 20px;
+        --iconwidth: 18px;
         padding-right: 0;
-        max-height: 600px;
+        max-height: var(--maxHeightAllIcons);
+        max-width: 99vw;
         background: lightgrey;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         margin-bottom: 1em;
         margin-left: 0;
       }
@@ -138,6 +150,7 @@
       }
       .iconcount {
         font-weight: bold;
+        font-size: 120%;
         color: darkred;
       }
       #_elementsCode {
@@ -145,6 +158,24 @@
         max-height: 15em;
         background: lightgreen;
         font-size: 12px;
+      }
+    </style>
+    <style id="iconlistScrollbars_per_set">
+      .iconlist {
+        max-height: var(--maximumIconSetHeigth);
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-right: 1em;
+      }
+      .iconlist::-webkit-scrollbar {
+        background: lightgreen;
+        width: 20px;
+      }
+      .iconlist::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: crimson;
       }
     </style>
     <style id="svg-icon-labels" onload="this.disabled=true">
@@ -164,10 +195,24 @@
         content: "svg:" attr(is);
       }
     </style>
-    <style id="search">
-      svg-icon[is*="cal"] {
-        background: green;
+    <style>
+      #searchBox {
+        font-size: 1.5em;
+        color: darkgreen;
       }
+      #_codeinfo {
+        font-size: 1.5em;
+        background: darkgreen;
+        color: whitesmoke;
+      }
+      #createDownloadLink {
+        font-size: 1.5em;
+      }
+    </style>
+    <style id="search">
+      /* svg-icon[is*="cal"] {
+        background: green;
+      } */
     </style>
     <style id="still_loading">
       #_elementsCode {
@@ -178,7 +223,7 @@
       #_sectionAvailableIcons {
         background: crimson;
       }
-      #_sectionAvailableIcons h4 {
+      #_sectionAvailableIcons summary {
         color: white;
       }
     </style>
@@ -190,18 +235,26 @@
       <p class="loadstatus"></p>
 
       <p id="_links">
-        <a href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
-        <a href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js"
+        <a target="_blank" href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
+        <a
+          target="_blank"
+          href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js"
           >sourcecode</a
         >
         -
-        <a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/"
-          >Play with example icons in a JSFiddle playground</a
+        <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/"
+          >Play with icons in a JSFiddle playground</a
         >
+        (documented full source code) -
+        <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
+          >Play with 6 icons in a JSFiddle playground</a
+        >(minified production example)
       </p>
+      <p><b>No</b> external SVG, <b>No</b> Sprites, <b>No</b> external JS files, <b>No</b> hassle.</p>
+
       <p>
-        <b>No</b> external SVG, <b>No</b> external JS files. &nbsp;pick from <span class="iconcount"></span> Bootstrap,
-        Feather, FontAwesome, Material, Eva and Clarity icons, or add your own SVG
+        Pick from <span class="iconcount"></span> Bootstrap, Feather, FontAwesome, Google Material, Eva, Radix, IBM
+        Carbon, Linear, Vaadin and Clarity icons, or add your own SVG
       </p>
     </header>
     <main id="_main">
@@ -229,25 +282,37 @@
         <ul>
           <li>
             Does <b>not</b> Import SVG. IconMeister <b>generates</b> SVG from a configuraton String. An extra safeguard
-            against <a href="http://ghostlulz.com/xss-svg/">SVG XSS attacks</a>
+            against <a target="_blank" href="http://ghostlulz.com/xss-svg/">SVG XSS attacks</a>
           </li>
           <li>Is about only loading the icons you use.</li>
           <li>Bundles icons from different Icon Sets</li>
-          <li>Included in the HEAD of an HTML document (SSR) there is no extra download... none, zilch, nada</li>
+          <li>
+            as SCRIPT included in the HEAD of an HTML document (eg. SSR) there is no extra download... none, zilch, nada
+          </li>
           <li>All code + icons bundled in one file makes for better GZip compression</li>
           <li>Is <b>under 800 Bytes GZipped</b> (excluding icons)</li>
           <li>NO! There is no NPM package, you have to assemble the script yourself, see the Script Generator below</li>
-          <li><a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">run in a JSFiddle playground</a></li>
+          <li>
+            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
+              >Play with example icons in a JSFiddle playground</a
+            >(minified production example) or
+            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
+            (documented full source code)
+          </li>
         </ul>
 
-        <h3>Layout of the IconMeister code:</h3>
+        <h3>Layout of the IconMeister Custom Element code: (you build with the Code Generator below)</h3>
         <pre class="code">
 &lt;script>
-  !((              // created from one IIFE, no global scope polution
+  !((             // created from one IIFE, no global scope polution
     icons,        // configurable icons (parameter below)
     {attributes}  // many observed attributes/properties/CSS properties
   )=>{
-      // IconMeister JS code defining Custom Element &lt;svg-icon>&lt;/svg-icon>
+    // IconMeister JS code defining Custom Element &lt;svg-icon>&lt;/svg-icon>
+    customElements.define("svg-icon", class extends HTMLElement{
+      connectedCallback(){
+      }
+    })
   })({
     "im"    : "box:9;path:m3 3h3v3h-3z", // SVG icon used in this documentation page
     "icon2" : "box:24;path:M12 12h12 ...",
@@ -289,9 +354,7 @@
           <svg-icon is="im" xy="1 -1"></svg-icon>
           <svg-icon is="im" w="16" h="16"></svg-icon>
         </div>
-        <h3>
-          Configure single Element with Properties:
-        </h3>
+        <h3>Configure single Element with Properties:</h3>
         <div>
           <p>All Attributes are available as <i>Property</i> Getter/Setter</p>
           Mouse over these icons
@@ -302,15 +365,15 @@
             <svg-icon stroke="blue" fill="gold"></svg-icon>
             <svg-icon stroke="hotpink" fill="teal"></svg-icon>
           </span>
-          to execute:
+          <br /><b>to execute:</b>
           <pre class="code">
         demoicon.tile   = coloricon.fill; 
         demoicon.stroke = coloricon.stroke;
         demoicon.width  = 1; 
         demoicon.scale  = 1.7;
-        demoicon.img    = 0; // create SVG Element
       </pre
           >
+          <p>on the icons above</p>
         </div>
       </section>
       <section>
@@ -343,9 +406,7 @@
         </div>
         <h3>Example #1 - Scrabble tiles</h3>
         <div>
-          <p>
-            IconMeister has 3 pre-defined variables: v1, v2, v3 (same behaviour as Attributes)
-          </p>
+          <p>IconMeister has 3 pre-defined variables: v1, v2, v3 (same behaviour as Attributes)</p>
           <style>
             #_scrabble svg-icon {
               background: none; /* cancel global background:grey above*/
@@ -383,14 +444,20 @@
         <div id="_codegenerator">
           <h2>IconMeister SCRIPT Code Generator:</h2>
           <p>
-            Want to play with example code, see
-            <a href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">the JSFiddle playground</a>
+            Want to play with example code, see:
+            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
+            (documented full source code) -
+            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
+              >JSFidlle Example #1 With &lt;icon-toolbar> Custom Element</a
+            >(minified production example)
           </p>
           <p>
             Copy this code into the HTML document. In the HEAD if you want the &ltsvg-icon> Custom Element declared
             asap<br />
             If your WebServer is really really secured, you might need a
-            <a href="https://developers.google.com/web/fundamentals/security/csp/#if_you_absolutely_must_use_it"
+            <a
+              target="_blank"
+              href="https://developers.google.com/web/fundamentals/security/csp/#if_you_absolutely_must_use_it"
               >CSP nonce</a
             >.<br />
             Or import it. It is an IIFE, so will not touch the global scope.
@@ -399,27 +466,91 @@
           <p id="_codeinfo">
             IconMeister: <span id="_elementsCodeIMSize">000</span> Bytes +
             <b><span id="_elementsCodeIconCount"></span></b> icons = <span id="_elementsCodeSize">000</span> Bytes (but
-            only HTTP delivered GZip size counts)
+            only delivered GZip size counts!)
           </p>
           <p class="loadstatus"></p>
           <textarea spellcheck="false" id="_elementsCode">
-Preparing all 5000+ icons takes app. THREE minutes (yes, this could be optimized). You can scroll the red area below, and view all icons while loading. Mouse-over an icon to see its title and SVG definition string. Once loading is done, select icons and this textarea will contain all JS code required. Your selected icons are stored in LocalStorage</textarea
+Preparing all 7000+ icons takes a minute. You can scroll the red area below, and view all icons while loading. Mouse-over an icon to see its title and SVG definition string. Once loading is done, select icons and this textarea will contain all JS code required. Your selected icons are stored in LocalStorage. You can collapse the IconSets you do not want to see;</textarea
           >
+
           <div id="_selectedIcons"></div>
         </div>
+
+        <br />
+        <button id="createDownloadLink">Download this generated IconMeister Javascript file</button
+        ><a download="element.iconmeister.js" id="downloadlink" style="display: none">Download IconMeister code</a>
+
         <h3 id="iconsheader">
-          <span class="iconcount"></span> available Icons:
+          <span class="iconcount"></span> available icons filter:
           <input type="text" id="searchBox" placeholder="[search all icons]" />
         </h3>
+        Click an Icon to include in your (localStorage) Icon Set. Collapse the Icon Sets you do not want to see.
         <div id="_sectionAvailableIcons">
-          <div id="Material" class="iconlist" src="icons-material.json" uri="https://material.io/resources/icons"></div>
-          <div id="Feather" class="iconlist" src="icons-feather.json" uri="//feathericons.com/"></div>
-          <div id="FontAwesom" class="iconlist" src="icons-fontawesome.json" uri="//fontawesome.com/icons"></div>
-          <div id="Clarity" class="iconlist" src="icons-clarity.json" uri="//clarity.design/icons"></div>
-          <div id="Bootstrap" class="iconlist" src="icons-bootstrap.json" uri="//icons.getbootstrap.com/"></div>
-          <div id="Eva" class="iconlist" src="icons-eva.json" uri="//akveo.github.io/eva-icons/"></div>
+          <div
+            id="Bootstrap"
+            class="iconlist"
+            src="icons-bootstrap-1030-icons.json"
+            uri="//icons.getbootstrap.com/"
+          ></div>
+          <div
+            id="Carbon"
+            class="iconlist load"
+            src="icons-carbon-1269-icons.json"
+            uri="//www.carbondesignsystem.com/guidelines/icons/library"
+          ></div>
+          <div id="Clarity" class="iconlist" src="icons-clarity-1100-icons.json" uri="//clarity.design/icons"></div>
+          <div id="Eva" class="iconlist" src="icons-eva-489-icons.json" uri="//akveo.github.io/eva-icons/"></div>
+          <div id="Feather" class="iconlist" src="icons-feather-281-icons.json" uri="//feathericons.com/"></div>
+          <div
+            id="FontAwesome"
+            class="iconlist"
+            src="icons-fontawesome-1150-icons.json"
+            uri="//fontawesome.com/icons"
+          ></div>
+          <div id="Linear" class="iconlist load" src="icons-linear-170-icons.json" uri="//linearicons.com/free"></div>
+          <div
+            id="Material"
+            class="iconlist"
+            src="icons-material-960-icons.json"
+            uri="https://material.io/resources/icons"
+          ></div>
+          <div id="Radix" class="iconlist load" src="icons-radix-264-icons.json" uri="//icons.modulz.app/"></div>
+          <div
+            id="Vaadin"
+            class="iconlist load"
+            src="icons-vaadin-636-icons.json"
+            uri="//vaadin.com/components/vaadin-icons"
+          ></div>
         </div>
       </section>
+      <hr />
+      <section>
+        <h3>When working with icons</h3>
+        <ul>
+          <li>
+            Icons take up 100% of the parent block element. Easiest is to place the icon inside a CSS Grid or Flexbox
+            container.
+            <br />Also see:
+            <ul>
+              <li>
+                <a href="https://www.impressivewebs.com/width-100-percent-css/"
+                  >https://www.impressivewebs.com/width-100-percent-css/</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/iconmeister/iconmeister.github.io/issues/1"
+                  >https://github.com/iconmeister/iconmeister.github.io/issues/1</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Take notice of accessibility
+            <a href="https://css-tricks.com/accessible-svgs/">https://css-tricks.com/accessible-svgs/</a>
+          </li>
+        </ul>
+      </section>
+      <hr />
       <section>
         <h3>Advanced: include raw SVG</h3>
         <div>
@@ -466,6 +597,30 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           </pre>
         </div>
       </section>
+      <section>
+        <h3>Editting SVG</h3>
+        <div>
+          <ul>
+            <li>
+              <a target="_blank" href="https://jakearchibald.github.io/svgomg/">SVG cleanup (Jake Archibald SVGOMG)</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://yqnn.github.io/svg-path-editor/">(nest) SVG Path Editor</a>
+            </li>
+            <li>
+              <a target="_blank" href="http://jsfiddle.net/CustomElementsExamples/d4fk1n6o/">Path conversion tool</a>
+            </li>
+            <li><a target="_blank" href="https://aydos.com/svgedit/">SVG Editor</a></li>
+            <li>
+              <a target="_blank" href="http://complexdan.com/svg-circleellipse-to-path-converter/"
+                >SVG Circle to Path conversion</a
+              >
+            </li>
+            <li><a target="_blank" href="https://www.smiffysplace.com/stars.html">SVG n-sided Star creator</a></li>
+          </ul>
+        </div>
+      </section>
+
       <p></p>
     </main>
     <footer>
@@ -507,13 +662,14 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
       addIconMeisterIcon("im", "box:9;path:m3 3h3v3h-3z");
     </script>
     <script>
+      let urlParams = new URLSearchParams(window.location.search);
       window.onload = () => {
         let totaliconcount = 0;
         let demoicons = $demoicons.getElementsByTagName("svg-icon");
         let docicons = $demoicons.getElementsByClassName("demohtml");
 
         const JSONstring = (obj) => JSON.stringify(obj);
-        const setProperties = (obj, propes) => Object.assign(obj, props);
+        // const setProperties = (obj, propes) => Object.assign(obj, props);
         const setAttributes = (obj, attrs) => Object.entries(attrs).map((entry) => obj.setAttribute(...entry));
         const createElement = (tag, attributes = {}) => (
           (tag = document.createElement(tag)), setAttributes(tag, attributes), tag
@@ -548,19 +704,14 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           }
         };
 
-        const createIconElement = ([is, attrs]) => createElement("svg-icon", { 
-          is, 
-          attrs, //used to highlight iconcode in generator
-          title: is + "\n\n" + attrs 
-        });
         const getSelectedIcons = (attr = "[selected]") => [..._selectedIcons.querySelectorAll(`svg-icon${attr}`)];
         const getSelectedAvailableIcons = () => [..._sectionAvailableIcons.querySelectorAll("svg-icon[selected]")];
 
-        const updateSelectedIcons = () => {
-          _selectedIcons.innerHTML = "";
-          _selectedIcons.append(...getSelectedAvailableIcons().map(appendSelectedIcon));
-          redrawIcons(selected);
-        };
+        // const updateSelectedIcons = () => {
+        //   _selectedIcons.innerHTML = "";
+        //   _selectedIcons.append(...getSelectedAvailableIcons().map(appendSelectedIcon));
+        //   redrawIcons(selected);
+        // };
 
         const appendSelectedIcon = (icon, manual = true) => {
           if (!icon) return;
@@ -571,10 +722,11 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
             setElementsCode(newiconCode);
           };
           if (icon.toggleAttribute("selected")) {
-            newicon = icon.cloneNode(true);
+            let newicon = icon.cloneNode(true);
             if (manual) newiconCode = `"${newicon.is}":"${newicon.getAttribute("attrs")}"`;
             icon.selectedIcon = newicon;
             newicon.onclick = removeSelected;
+            newicon.onmouseover = (evt) => console.error(21, newiconCode); //setElementsCode(newiconCode);
             _selectedIcons.append(newicon);
           } else {
             removeSelected();
@@ -608,10 +760,19 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
         const setInnerHTML = (txt = "", cl = "loadstatus") =>
           [...document.getElementsByClassName(cl)].map((sp) => (sp.innerHTML = txt));
 
+        let totalAvailableIconCount = 0;
+        let blocksize = ~~(urlParams.get("size") || 25);
         function loadIcons(list) {
+          //if URL set=Radix parameter, only load these sets
+          let loadSet = urlParams.get("set") || false;
+          if (loadSet.length && !loadSet.includes(list.id)) {
+            console.warn(loadSet.includes(list.id));
+            return;
+          }
           const file = list.getAttribute("src");
-          const isLocal = document.location.hostname === "localhost";
           setInnerHTML(`Loading: ${file}`);
+          // if string at end of HTML file contains something then return
+          const isLocal = document.location.hostname === "localhost";
           if (isLocal && !file.includes(excludeJSONfile)) return;
           try {
             return new Promise((resolve, reject) => {
@@ -619,26 +780,44 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
                 .then((response) => response.json())
                 .then((response) => {
                   const uri = list.getAttribute("uri");
+                  // don't load more than N icons per set
                   const entries = Object.entries(response).slice(0, isLocal ? 4999 : 1999);
-                  const html = `<h4>${entries.length} ${list.id} Icons <span><a href='${uri}'>${uri}</a></span></h4>`;
+                  const addTotalCount = (cnt) => setInnerHTML((totaliconcount += cnt), "iconcount");
+
+                  let iconsContainer = "summaryIcons_" + list.id;
+                  // list, entries, uri
+                  const html = `<details open><summary>${entries.length} ${list.id} Icons <span><a target="_blank" href='${uri}'>${uri}</a></span></summary><div id="${iconsContainer}"></div></details>`;
                   addHTML(list, html, "beforebegin");
+                  iconsContainer = document.getElementById(iconsContainer);
+
+                  totalAvailableIconCount += entries.length;
                   console.log(entries.length, uri);
-                  totaliconcount += entries.length;
-                  setInnerHTML(totaliconcount, "iconcount");
                   let storedHTML = false; //localStorage.getItem(list.id);//todo: make it work
-                  const appendIcons = (start) => {
-                    const end = start + 50;
-                    const addicons = entries.slice(start, end);
-                    setInnerHTML(`Parsing icons ${start}...${end} of ${entries.length} from ${file}`); // ${entries.length}
+                  const appendIcons = (startBlock) => {
+                    let startTime = new Date() / 1;
+                    const endBlock = startBlock + blocksize;
+                    const addicons = entries.slice(startBlock, endBlock);
+                    addTotalCount(addicons.length);
+                    setInnerHTML(
+                      `one-time Parsing ${totalAvailableIconCount} icons ${startBlock}...${endBlock} from ${file}`
+                    ); // ${entries.length}
                     addicons.map(([is, str]) => {
-                      if (!addIconMeisterIcon(is, str)) console.error("duplicate", is, list.id);
+                      if (!addIconMeisterIcon(is, str, false)) console.error("duplicate", is, list.id);
                     });
                     if (!storedHTML) {
-                      const newicons = addicons.map(createIconElement);
-                      list.append(...newicons);
-                      redrawIcons(newicons);
+                      //let fragment = document.createDocumentFragment();
+                      const newicons = addicons.map(([is, attrs]) =>
+                        createElement("svg-icon", {
+                          is,
+                          attrs, //used to highlight iconcode in generator
+                          title: is + "\n\n" + attrs,
+                        })
+                      );
+                      //fragment.append(...newicons);
+                      iconsContainer.append(...newicons);
+                      //redrawIcons(newicons);
                     }
-                    if (end < entries.length) setTimeout(() => appendIcons(end), 0);
+                    if (endBlock < entries.length) setTimeout(() => appendIcons(endBlock), 0);
                     else {
                       if (storedHTML) {
                         // document.getElementById(list.id).innerHTML = storedHTML;
@@ -651,13 +830,18 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
                       console.timeLog(list.id);
 
                       let debounce = false;
-                      list.onclick = (evt) => {
+                      iconsContainer.onclick = (evt) => {
                         if (debounce) return;
                         appendSelectedIcon(evt.target.closest("svg-icon"));
                         debounce = true;
                         setTimeout(() => (debounce = false), 300);
                       };
-
+                      let duration = new Date() / 1 - startTime;
+                      if (duration > 60 && blocksize > 10) {
+                        blocksize -= 10;
+                      } else if (blocksize < 200) {
+                        blocksize += 10;
+                      }
                       resolve(list);
                     }
                   };
@@ -666,7 +850,8 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
                     console.time(list.id);
                     appendIcons(0);
                   });
-                }).catch(e=>console.error(file,e));
+                })
+                .catch((e) => console.error(file, e));
             });
           } catch (e) {
             console.error(file, e);
@@ -681,12 +866,14 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
 
         const createIconMeisterSCRIPTcontent = (intoElement, iconsJSON) => {
           const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
-          let iconsSTR = `(\n${addLineBreaks(iconsJSON)})`;
-          let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(/\(\{\}\)/, iconsSTR);
+          let iconsSTR = `\n${addLineBreaks(iconsJSON)}`;
+          let marker = `{iconmeister:"iconmeister"}`;
+          let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(marker, iconsSTR);
           intoElement.innerHTML = IMscript;
           return IMscript;
         };
 
+        let elementsDemoCode = "";
         let elementsCodeSource = "";
         const setElementsCode = (highlight = "") => {
           // elementsCodeSource = txt;
@@ -694,6 +881,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           let iconsJSON = {};
           let iconNames = getSelectedIcons().map(({ is, api }) => {
             iconsJSON[is] = api[0][is];
+            elementsDemoCode += `<svg-icon is="${is}"></svg-icon>\n`;
             return is;
           });
           saveLocalStorage(iconNames);
@@ -709,14 +897,14 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           if (highlight != "") {
             _elementsCode.focus();
             _elementsCode.setSelectionRange(start - 3, start + highlight.length);
-            _elementsCode.scrollTop = _elementsCode.scrollHeight;
-            console.warn(highlight)
+            //_elementsCode.scrollTop = _elementsCode.scrollHeight;
           }
         };
 
         redrawIcons(icons);
 
-        Promise.all([...document.getElementsByClassName("iconlist")].map(loadIcons)).then((lists) => {
+        let load_iconlist = [...document.querySelectorAll(".iconlist")];
+        Promise.all(load_iconlist.map(loadIcons)).then((lists) => {
           fetchFile("elements.iconmeister.min.js", (response) => {
             elementsCodeSource = response;
             loadLocalStorage();
@@ -734,7 +922,7 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
 
         $coloricons.querySelectorAll("svg-icon").forEach((icon) => {
           const demoicons = $demoicons.querySelectorAll("[is=im]");
-          const color = icon.stroke;
+          // const color = icon.stroke;
           const style = (i, tile, stroke, width, scale) => (
             (i.tile = tile), (i.stroke = stroke), (i.width = width), (i.scale = scale)
           );
@@ -756,17 +944,51 @@ icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functio
           icon.onmouseout = () => changeIcons(unsetIcon);
         });
 
-        searchBox.addEventListener("keyup", (evt) => {
-          const value = searchBox.value;
-          let css = value
-            ? `#_sectionAvailableIcons svg-icon:not([is*="${value}"]){display:none};` +
-              `#_sectionAvailableIcons svg-icon[is*="${value}"]{background:green}`
+        
+        
+        let searchBoxSelect = (value) => {
+          search.innerHTML = value
+            ? `#_sectionAvailableIcons svg-icon:not([is*="${value}"]){display:none}` +
+              `#_sectionAvailableIcons svg-icon[is*="${value}"]{--searchBoxed;background:green;--iconwidth:30px;margin:1px}`
             : ``;
-          search.innerHTML = css;
-        });
-      };
+        };
+        let searched = urlParams.get("search") || "";
+        if (searched.length) {
+          searchBox.value = searched;
+          searchBoxSelect(searched);
+          _codegenerator.scrollIntoView();
+        }
+        searchBox.addEventListener("keyup", (evt) => searchBoxSelect(searchBox.value));
+
+
+
+
+        var textFile = null;
+        document.getElementById("createDownloadLink").addEventListener(
+          "click",
+          function () {
+            //fetch element.iconmeister.html
+            // replace `<script id="iconmeister">
+            let link = document.getElementById("downloadlink");
+            let text = document.getElementById("_elementsCode").value;
+            text = text.replace("<script>", "");
+            text = text.replace("<\/script>", "");
+            var data = new Blob([text], { type: "text/plain" });
+            if (textFile !== null) window.URL.revokeObjectURL(textFile);
+            link.href = window.URL.createObjectURL(data);
+            // link.style.display = "block"; // keep hidden for FireFox
+            link.click();
+          },
+          false
+        );
+      }; //
+
       var excludeJSONfile = "";
     </script>
+    <hr />
+    <hr />
+    <h3>Todo</h3>
+    <a href="https://materialdesignicons.com/">https://materialdesignicons.com/</a>
     <script id="IconMeisterAll"></script>
   </body>
 </html>
