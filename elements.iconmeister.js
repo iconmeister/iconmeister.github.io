@@ -80,12 +80,16 @@
                     // (1) Attribute OR
                     // (2) get a CSS property value OR
                     // (3) use the THIS.A Attribute definition
+                    
+                    // (1 = attribute)
                     THIS.getAttribute(attr) || // get DOM element attribute value //! 0 value is false!!
+                    // (2 = CSS property)
                     // CSS property: { --svg-icon-rect: "<rect ...>"} //! using quotes keeps IDE quiet
                     getComputedStyle(THIS)
                       .getPropertyValue(`--svg-icon-${attr}`) // read CSS prop --svg-icon-[attr]
                       .replace(/"/g, "") //! strip " from CSS property value,
                       .trim() || // trim spaces becuase CSS property is declared immediatly after semi-colon!
+                    // (3 = default)
                     THIS.A[attr], // return (default or set) attribute value
                 },
                 //----------------------------------------------------------------------

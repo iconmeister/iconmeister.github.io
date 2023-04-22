@@ -1,308 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta is="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      7000+ SVG icons in one &lt;svg-icon> Custom Element/Web Component file, No Dependencies, No external SVG files
-    </title>
-    <meta
-      is="Description"
-      content="&lt;svg-icon> IconMeister Custom Element/Web Component: Cherry pick SVG icons from 7000+ Bootstrap, IBM Carbon, Clarity, Eva, Feather, Font Awesome, Linear, Google Material, Radix, Vaadin Icon sets. No Dependencies, No external SVG files, No Icon Sprite"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'><rect width='100%' height='100%' fill='gold'/><text x='1' y='15.5'>IM</text></svg>"
-      type="image/svg+xml"
-    />
-    <!-- <link rel="prefetch" async href="./icon/clarity.json" as="fetch"> -->
 
-    <script id="elements" src="elements.iconmeister.js"></script>
-    <script defer src="https://hexedland.com/meisterbanner.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta is="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    7000+ SVG icons in one &lt;svg-icon> Custom Element/Web Component file, No Dependencies, No external SVG files
+  </title>
+  <meta is="Description"
+    content="&lt;svg-icon> IconMeister Custom Element/Web Component: Cherry pick SVG icons from 7000+ Bootstrap, IBM Carbon, Clarity, Eva, Feather, Font Awesome, Linear, Google Material, Radix, Vaadin Icon sets. No Dependencies, No external SVG files, No Icon Sprite" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'><rect width='100%' height='100%' fill='gold'/><text x='1' y='15.5'>IM</text></svg>"
+    type="image/svg+xml" />
+  <!-- <link rel="prefetch" async href="./icon/clarity.json" as="fetch"> -->
 
-  <body>
-    <style>
-      body {
-        /* --maximumIconSetHeigth:95px; */
-        /* --maxHeightAllIcons:700px; */
-        --maxwidth: 1400px;
-        --margintop: 95px;
-        --border: 1px solid grey;
-        max-width: var(--maxwidth);
-        max-height: 100vh;
-        margin: 0 auto;
-        font: 14px arial;
-        --codebackground: lightgrey;
-        --iconwidth: 40px;
-        --iconbackground: grey;
-        --iconbackground-hover: lightgreen;
-        --iconbackground-selected: lightgreen;
-      }
-      header {
-        padding-top: 1em;
-        width: var(--maxwidth);
-        border-bottom: var(--border);
-      }
-      header h1 {
-        margin: 2px 0;
-      }
-      main {
-        width: var(--maxwidth);
-        overflow-x: hidden;
-        overflow-y: hidden;
-        /* height: 100vh; */
-        /* scroll-snap-type: y mandatory; */
-      }
-      /* section { */
-      /* margin-top: var(--margintop); */
-      /*scroll-snap-align: start;
+  <script id="elements" src="elements.iconmeister.js"></script>
+  <script src="https://load-file.github.io/element.js"></script>
+  <script defer src="https://hexedland.com/meisterbanner.js"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      /* --maximumIconSetHeigth:95px; */
+      /* --maxHeightAllIcons:700px; */
+      --maxwidth: 1400px;
+      --margintop: 95px;
+      --border: 1px solid grey;
+      max-width: var(--maxwidth);
+      max-height: 100vh;
+      margin: 0 auto;
+      font: 14px arial;
+      --codebackground: lightgrey;
+      --iconwidth: 40px;
+      --iconbackground: grey;
+      --iconbackground-hover: lightgreen;
+      --iconbackground-selected: lightgreen;
+    }
+
+    header {
+      padding-top: 1em;
+      width: var(--maxwidth);
+      border-bottom: var(--border);
+    }
+
+    header h1 {
+      margin: 2px 0;
+    }
+
+    main {
+      width: var(--maxwidth);
+      overflow-x: hidden;
+      overflow-y: hidden;
+      /* height: 100vh; */
+      /* scroll-snap-type: y mandatory; */
+    }
+
+    /* section { */
+    /* margin-top: var(--margintop); */
+    /*scroll-snap-align: start;
         scroll-margin: var(--margintop); */
-      /* } */
-      footer {
-        width: var(--maxwidth);
-        border-top: var(--border);
-        padding: 0.5em 0;
-      }
-      svg-icon {
-        contain: strict style;
-        box-sizing: initial;
-        display: inline-block;
-        position: relative;
-        width: var(--iconwidth);
-        height: var(--iconwidth);
-        background: lightcoral;
-      }
+    /* } */
+    footer {
+      width: var(--maxwidth);
+      border-top: var(--border);
+      padding: 0.5em 0;
+    }
 
-      svg-icon:hover {
-        cursor: pointer;
-        background: var(--iconbackground-hover);
-      }
+    svg-icon {
+      contain: strict style;
+      box-sizing: initial;
+      display: inline-block;
+      position: relative;
+      width: var(--iconwidth);
+      height: var(--iconwidth);
+      background: lightcoral;
+    }
 
-      svg-icon {
-        box-sizing: border-box;
-        max-width: var(--iconwidth);
-        background: var(--iconbackground);
-      }
-      svg-icon[selected] img {
-        background: var(--iconbackground-selected);
-      }
-      .demohtml {
-        font-size: 120%;
-        vertical-align: middle;
-        padding-left: 0.5em;
-      }
-      .code {
-        /* margin-left: 1em; */
-        font-family: monospace;
-        background: var(--codebackground);
-        white-space: pre;
-      }
+    svg-icon:hover {
+      cursor: pointer;
+      background: var(--iconbackground-hover);
+    }
 
-      textarea {
-        height: 160px;
-        width: 90%;
-        color: black;
-      }
-      textarea::selection {
-        background: green;
-        color: whitesmoke;
-      }
-      .loadstatus {
-        font-size: 20px;
-        font-weight: bold;
-        color: crimson;
-      }
-      summary,
-      h3,
-      h4 {
-        margin-top: 2em;
-        margin-left: 1em;
-      }
-      h3 + div {
-        margin-left: 3em;
-      }
-      summary,
-      h4 {
-        margin: 0.2em;
-        margin-left: 1em;
-      }
-      .iconlist {
-        margin-left: 1em;
-      }
-      #iconsheader {
-        margin: 0.1em;
-      }
-      #_sectionAvailableIcons {
-        --iconwidth: 18px;
-        padding-right: 0;
-        max-height: var(--maxHeightAllIcons);
-        max-width: 99vw;
-        background: lightgrey;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        margin-bottom: 1em;
-        margin-left: 0;
-      }
-      .HRicons {
-        width: max-content;
-        margin: 1em auto;
-      }
-      .iconcount {
-        font-weight: bold;
-        font-size: 120%;
-        color: darkred;
-      }
-      #_elementsCode {
-        width: 100%;
-        max-height: 15em;
-        background: lightgreen;
-        font-size: 12px;
-      }
-    </style>
-    <style id="iconlistScrollbars_per_set">
-      .iconlist {
-        max-height: var(--maximumIconSetHeigth);
-        overflow-y: auto;
-        overflow-x: hidden;
-        margin-right: 1em;
-      }
-      .iconlist::-webkit-scrollbar {
-        background: lightgreen;
-        width: 20px;
-      }
-      .iconlist::-webkit-scrollbar-thumb {
-        border-radius: 3px;
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: crimson;
-      }
-    </style>
-    <style id="svg-icon-labels" onload="this.disabled=true">
-      svg-icon:hover:after {
-        position: absolute;
-        left: 0;
-        top: -1em;
-        width: 10em;
-        z-index: 99;
-        background: white;
-        font-size: 12px;
-        color: black;
-        content: "img:" attr(is);
-      }
+    svg-icon {
+      box-sizing: border-box;
+      max-width: var(--iconwidth);
+      background: var(--iconbackground);
+    }
 
-      svg-icon[svg="1"]:hover:after {
-        content: "svg:" attr(is);
-      }
-    </style>
-    <style>
-      #searchBox {
-        font-size: 1.5em;
-        color: darkgreen;
-      }
-      #_codeinfo {
-        font-size: 1.5em;
-        background: darkgreen;
-        color: whitesmoke;
-      }
-      #createDownloadLink {
-        font-size: 1.5em;
-      }
-    </style>
-    <style id="search">
-      /* svg-icon[is*="cal"] {
+    svg-icon[selected] img {
+      background: var(--iconbackground-selected);
+    }
+
+    .demohtml {
+      font-size: 120%;
+      vertical-align: middle;
+      padding-left: 0.5em;
+    }
+
+    .code {
+      /* margin-left: 1em; */
+      font-family: monospace;
+      background: var(--codebackground);
+      white-space: pre;
+    }
+
+    textarea {
+      height: 160px;
+      width: 90%;
+      color: black;
+    }
+
+    textarea::selection {
+      background: green;
+      color: whitesmoke;
+    }
+
+    .loadstatus {
+      font-size: 20px;
+      font-weight: bold;
+      color: crimson;
+    }
+
+    summary,
+    h3,
+    h4 {
+      margin-top: 2em;
+      margin-left: 1em;
+    }
+
+    h3+div {
+      margin-left: 3em;
+    }
+
+    summary,
+    h4 {
+      margin: 0.2em;
+      margin-left: 1em;
+    }
+
+    .iconlist {
+      margin-left: 1em;
+    }
+
+    #iconsheader {
+      margin: 0.1em;
+    }
+
+    #_sectionAvailableIcons {
+      --iconwidth: 18px;
+      padding-right: 0;
+      max-height: var(--maxHeightAllIcons);
+      max-width: 99vw;
+      background: lightgrey;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      margin-bottom: 1em;
+      margin-left: 0;
+    }
+
+    .HRicons {
+      width: max-content;
+      margin: 1em auto;
+    }
+
+    .iconcount {
+      font-weight: bold;
+      font-size: 120%;
+      color: darkred;
+    }
+
+    #_elementsCode {
+      width: 100%;
+      max-height: 15em;
+      background: lightgreen;
+      font-size: 12px;
+    }
+  </style>
+  <style id="iconlistScrollbars_per_set">
+    .iconlist {
+      max-height: var(--maximumIconSetHeigth);
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-right: 1em;
+    }
+
+    .iconlist::-webkit-scrollbar {
+      background: lightgreen;
+      width: 20px;
+    }
+
+    .iconlist::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: crimson;
+    }
+  </style>
+  <style id="svg-icon-labels" onload="this.disabled=true">
+    svg-icon:hover:after {
+      position: absolute;
+      left: 0;
+      top: -1em;
+      width: 10em;
+      z-index: 99;
+      background: white;
+      font-size: 12px;
+      color: black;
+      content: "img:" attr(is);
+    }
+
+    svg-icon[svg="1"]:hover:after {
+      content: "svg:" attr(is);
+    }
+  </style>
+  <style>
+    #searchBox {
+      font-size: 1.5em;
+      color: darkgreen;
+    }
+
+    #_codeinfo {
+      font-size: 1.5em;
+      background: darkgreen;
+      color: whitesmoke;
+    }
+
+    #createDownloadLink {
+      font-size: 1.5em;
+    }
+  </style>
+  <style id="search">
+    /* svg-icon[is*="cal"] {
         background: green;
       } */
-    </style>
-    <style id="still_loading">
-      #_elementsCode {
-        font-size: 25px;
-        font-weight: bold;
-        color: darkred;
-      }
-      #_sectionAvailableIcons {
-        background: crimson;
-      }
-      #_sectionAvailableIcons summary {
-        color: white;
-      }
-    </style>
-    <header>
-      <h1>
-        [WIP] W3C Custom Element/Web Component: <b class="code">&lt;svg-icon is=iconname>&lt;/svg-icon></b>
-        <span hidden> in <span id="elementsSize"></span> Bytes (gzip)</span>
-      </h1>
-      <p class="loadstatus"></p>
+  </style>
+  <style id="still_loading">
+    #_elementsCode {
+      font-size: 25px;
+      font-weight: bold;
+      color: darkred;
+    }
 
-      <p id="_links">
-        <a target="_blank" href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
-        <a
-          target="_blank"
-          href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js"
-          >sourcecode</a
-        >
-        -
-        <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/"
-          >Play with icons in a JSFiddle playground</a
-        >
-        (documented full source code) -
-        <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
-          >Play with 6 icons in a JSFiddle playground</a
-        >(minified production example)
-      </p>
-      <p><b>No</b> external SVG, <b>No</b> Sprites, <b>No</b> external JS files, <b>No</b> hassle.</p>
+    #_sectionAvailableIcons {
+      background: crimson;
+    }
 
-      <p>
-        Pick from <span class="iconcount"></span> Bootstrap, Feather, FontAwesome, Google Material, Eva, Radix, IBM
-        Carbon, Linear, Vaadin and Clarity icons, or add your own SVG
-      </p>
-    </header>
-    <main id="_main">
-      <section>
-        <div class="HRicons">
-          <svg-icon is="im"></svg-icon>
-          <svg-icon is="im" tile="lightgreen"></svg-icon>
-          <svg-icon is="im" rotate="45"></svg-icon>
-          <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
-          <svg-icon is="im" stroke="yellow"></svg-icon>
-          <svg-icon is="im" width=".5"></svg-icon>
-          <svg-icon is="im" fill="red"></svg-icon>
-          <svg-icon is="im" rotate="45"></svg-icon>
-          <svg-icon is="im" tile="lightgreen"></svg-icon>
-          <svg-icon is="im" scale=".5"></svg-icon>
-          <svg-icon is="im" opacity=".5"></svg-icon>
-          <svg-icon is="im" fill="red"></svg-icon>
-          <svg-icon is="im" tile="lightgreen"></svg-icon>
-          <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
-          <svg-icon is="im" rotate="45"></svg-icon>
-          <svg-icon is="im" xy="1 -1"></svg-icon>
-          <svg-icon is="im" w="16" h="16"></svg-icon>
-        </div>
-        <h3>IconMeister:</h3>
-        <ul>
-          <li>
-            Does <b>not</b> Import SVG. IconMeister <b>generates</b> SVG from a configuraton String. An extra safeguard
-            against <a target="_blank" href="http://ghostlulz.com/xss-svg/">SVG XSS attacks</a>
-          </li>
-          <li>Is about only loading the icons you use.</li>
-          <li>Bundles icons from different Icon Sets</li>
-          <li>
-            as SCRIPT included in the HEAD of an HTML document (eg. SSR) there is no extra download... none, zilch, nada
-          </li>
-          <li>All code + icons bundled in one file makes for better GZip compression</li>
-          <li>Is <b>under 800 Bytes GZipped</b> (excluding icons)</li>
-          <li>NO! There is no NPM package, you have to assemble the script yourself, see the Script Generator below</li>
-          <li>
-            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
-              >Play with example icons in a JSFiddle playground</a
-            >(minified production example) or
-            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
-            (documented full source code)
-          </li>
-        </ul>
+    #_sectionAvailableIcons summary {
+      color: white;
+    }
+  </style>
+  <header>
+    <h1>
+      [WIP] W3C Custom Element/Web Component: <b class="code">&lt;svg-icon is=iconname>&lt;/svg-icon></b>
+      <span hidden> in <span id="elementsSize"></span> Bytes (gzip)</span>
+    </h1>
+    <p class="loadstatus"></p>
 
-        <h3>Layout of the IconMeister Custom Element code: (you build with the Code Generator below)</h3>
-        <pre class="code">
+    <p id="_links">
+      <a target="_blank" href="https://github.com/iconmeister/iconmeister.github.io">Github</a> -
+      <a target="_blank"
+        href="https://github.com/iconmeister/iconmeister.github.io/blob/master/elements.iconmeister.js">sourcecode</a>
+      -
+      <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">Play with icons in a JSFiddle
+        playground</a>
+      (documented full source code) -
+      <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/">Play with 6 icons in a JSFiddle
+        playground</a>(minified production example)
+    </p>
+    <p><b>No</b> external SVG, <b>No</b> Sprites, <b>No</b> external JS files, <b>No</b> hassle.</p>
+
+    <p>
+      Pick from <span class="iconcount"></span> Bootstrap, Feather, FontAwesome, Google Material, Eva, Radix, IBM
+      Carbon, Linear, Vaadin and Clarity icons, or add your own SVG
+    </p>
+  </header>
+  <main id="_main">
+    <section>
+      <div class="HRicons">
+        <svg-icon is="im"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
+        <svg-icon is="im" stroke="yellow"></svg-icon>
+        <svg-icon is="im" width=".5"></svg-icon>
+        <svg-icon is="im" fill="red"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" scale=".5"></svg-icon>
+        <svg-icon is="im" opacity=".5"></svg-icon>
+        <svg-icon is="im" fill="red"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" xy="1 -1"></svg-icon>
+        <svg-icon is="im" w="16" h="16"></svg-icon>
+      </div>
+      <h3>IconMeister:</h3>
+      <ul>
+        <li>
+          Does <b>not</b> Import SVG. IconMeister <b>generates</b> SVG from a configuraton String. An extra safeguard
+          against <a target="_blank" href="http://ghostlulz.com/xss-svg/">SVG XSS attacks</a>
+        </li>
+        <li>Is about only loading the icons you use.</li>
+        <li>Bundles icons from different Icon Sets</li>
+        <li>
+          as SCRIPT included in the HEAD of an HTML document (eg. SSR) there is no extra download... none, zilch, nada
+        </li>
+        <li>All code + icons bundled in one file makes for better GZip compression</li>
+        <li>Is <b>under 800 Bytes GZipped</b> (excluding icons)</li>
+        <li>NO! There is no NPM package, you have to assemble the script yourself, see the Script Generator below</li>
+        <li>
+          <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/">Play with example icons in a
+            JSFiddle playground</a>(minified production example) or
+          <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
+          (documented full source code)
+        </li>
+      </ul>
+
+      <h3>Layout of the IconMeister Custom Element code: (you build with the Code Generator below)</h3>
+      <pre class="code">
 &lt;script>
   !((             // created from one IIFE, no global scope polution
     icons,        // configurable icons (parameter below)
@@ -319,676 +336,677 @@
     "icon3" : "box:20;path:M0 0A10 ...",
     ...
   })
-&lt;/script></pre
-        >
-        <h3>IconMeister creates an IMG or Inline SVG Element:</h3>
-        <div id="svgorimg">
-          <svg-icon is="im"></svg-icon>
-          (default) The SVG is injected as <code>data:image/svg</code> into an IMG tag:
-          <pre class="code">&lt;svg-icon is="im">&lt;img src='data:image/svg+xml,[SVG]'>&lt;svg-icon></pre>
-          Easier for drag/drop interactions. The whole square IMG is the click target.
-          <p></p>
-          <svg-icon is="im" img="0"></svg-icon>
-          The SVG is injected as Inline-SVG:
-          <pre class="code">
-&lt;svg-icon is="im" img="0" >&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'>...&lt;/svg>&lt;svg-icon></pre
-          >
-          Easier for styling and animating SVG with CSS. Be aware of
-          <a href="https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/" target="_blank"
-            >pointer-events/click-target issues</a
-          >
-        </div>
-      </section>
-      <section id="_configureElementAttributes">
-        <h3>Configure single Element with Attributes:</h3>
-        <div id="$demoicons">
-          <svg-icon is="im"></svg-icon>
-          <svg-icon is="im" stroke="yellow"></svg-icon>
-          <svg-icon is="im" width=".5"></svg-icon>
-          <svg-icon is="im" fill="red"></svg-icon>
-          <svg-icon is="im" opacity=".5"></svg-icon>
-          <svg-icon is="im" rotate="45"></svg-icon>
-          <svg-icon is="im" scale=".5"></svg-icon>
-          <svg-icon is="im" tile="lightgreen"></svg-icon>
-          <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
-          <svg-icon is="im" xy="1 -1"></svg-icon>
-          <svg-icon is="im" w="16" h="16"></svg-icon>
-        </div>
-        <h3>Configure single Element with Properties:</h3>
-        <div>
-          <p>All Attributes are available as <i>Property</i> Getter/Setter</p>
-          Mouse over these icons
-          <span id="$coloricons">
-            <svg-icon stroke="yellow" fill="red"></svg-icon>
-            <svg-icon stroke="red" fill="yellow"></svg-icon>
-            <svg-icon stroke="green" fill="pink"></svg-icon>
-            <svg-icon stroke="blue" fill="gold"></svg-icon>
-            <svg-icon stroke="hotpink" fill="teal"></svg-icon>
-          </span>
-          <br /><b>to execute:</b>
-          <pre class="code">
+&lt;/script></pre>
+      <h3>IconMeister creates an IMG or Inline SVG Element:</h3>
+      <div id="svgorimg">
+        <svg-icon is="im"></svg-icon>
+        (default) The SVG is injected as <code>data:image/svg</code> into an IMG tag:
+        <pre class="code">&lt;svg-icon is="im">&lt;img src='data:image/svg+xml,[SVG]'>&lt;svg-icon></pre>
+        Easier for drag/drop interactions. The whole square IMG is the click target.
+        <p></p>
+        <svg-icon is="im" img="0"></svg-icon>
+        The SVG is injected as Inline-SVG:
+        <pre class="code">
+&lt;svg-icon is="im" img="0" >&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'>...&lt;/svg>&lt;svg-icon></pre>
+        Easier for styling and animating SVG with CSS. Be aware of
+        <a href="https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/"
+          target="_blank">pointer-events/click-target issues</a>
+      </div>
+    </section>
+    <section id="_configureElementAttributes">
+      <h3>Configure single Element with Attributes:</h3>
+      <div id="$demoicons">
+        <svg-icon is="im"></svg-icon>
+        <svg-icon is="im" stroke="yellow"></svg-icon>
+        <svg-icon is="im" width=".5"></svg-icon>
+        <svg-icon is="im" fill="red"></svg-icon>
+        <svg-icon is="im" opacity=".5"></svg-icon>
+        <svg-icon is="im" rotate="45"></svg-icon>
+        <svg-icon is="im" scale=".5"></svg-icon>
+        <svg-icon is="im" tile="lightgreen"></svg-icon>
+        <svg-icon is="im" border="stroke='red' stroke-width='3' stroke-dasharray='3 3 3'"></svg-icon>
+        <svg-icon is="im" xy="1 -1"></svg-icon>
+        <svg-icon is="im" w="16" h="16"></svg-icon>
+      </div>
+      <h3>Configure single Element with Properties:</h3>
+      <div>
+        <p>All Attributes are available as <i>Property</i> Getter/Setter</p>
+        Mouse over these icons
+        <span id="$coloricons">
+          <svg-icon stroke="yellow" fill="red"></svg-icon>
+          <svg-icon stroke="red" fill="yellow"></svg-icon>
+          <svg-icon stroke="green" fill="pink"></svg-icon>
+          <svg-icon stroke="blue" fill="gold"></svg-icon>
+          <svg-icon stroke="hotpink" fill="teal"></svg-icon>
+        </span>
+        <br /><b>to execute:</b>
+        <pre class="code">
         demoicon.tile   = coloricon.fill; 
         demoicon.stroke = coloricon.stroke;
         demoicon.width  = 1; 
         demoicon.scale  = 1.7;
-      </pre
-          >
-          <p>on the icons above</p>
-        </div>
-      </section>
-      <section>
-        <h3>Configure multiple Elements with CSS Properties:</h3>
-        <div>
-          <p>All Attribute/'Property values can be set with (modern) --CSSproperties</p>
-          <style id="CSSpropertiesStyle">
-            #CSSproperties > svg-icon {
-              --color: red;
-              --radius: 3;
-              --svg-icon-stroke: var(--color);
-              --svg-icon-width: 0.5;
-              --svg-icon-fill: green;
-              --svg-icon-rotate: 45;
-              --svg-icon-rect: "<circle cx='4.5' cy='4.5' r='" var(--radius) "' fill='yellow'/>";
-            }
-          </style>
-          <div displaystyle="CSSpropertiesStyle"></div>
-          <br />
-          <div id="CSSproperties">
-            <svg-icon is="im"></svg-icon>
-            <svg-icon is="im"></svg-icon>
-            <svg-icon is="im"></svg-icon>
-          </div>
-          <p>
-            CSS properties are not observed (do not trigger updates).
-            <br />CSS properties are read on Icon (re)creation. <br />
-            You can redraw an icon by calling its <span class="code">.svg()</span> method.
-          </p>
-        </div>
-        <h3>Example #1 - Scrabble tiles</h3>
-        <div>
-          <p>IconMeister has 3 pre-defined variables: v1, v2, v3 (same behaviour as Attributes)</p>
-          <style>
-            #_scrabble svg-icon {
-              background: none; /* cancel global background:grey above*/
-            }
-          </style>
-          <style id="CSSscrabbleStyle">
-            #_scrabble {
-              --iconwidth: 80px;
-              --svg-icon-box: 100;
-              --tile: "<rect width='100%' height='100%' fill='#e6c998' rx='15' />";
-              --letter: "<text x='40' y='75' font-size='70' font-family='Arial' text-anchor='middle'>{v1}</text>";
-              --value: "<text x='75' y='80' font-size='25' font-family='Arial' text-anchor='middle'>{v2}</text>";
-              --svg-icon-rect: var(--tile) var(--letter) var(--value);
-            }
-          </style>
-          <div displaystyle="CSSscrabbleStyle"></div>
-          <div displaystyle="_scrabble"></div>
-          <br />
-          <div id="_scrabble">
-            <svg-icon v1="I" v2="0"></svg-icon>
-            <svg-icon v1="c" v2="0"></svg-icon>
-            <svg-icon v1="o" v2="6"></svg-icon>
-            <svg-icon v1="n" v2="4"></svg-icon>
-            <svg-icon v1="M" v2="8"></svg-icon>
-            <svg-icon v1="e" v2="7"></svg-icon>
-            <svg-icon v1="i" v2="0"></svg-icon>
-            <svg-icon v1="s" v2="1"></svg-icon>
-            <svg-icon v1="t" v2="3"></svg-icon>
-            <svg-icon v1="e" v2="4"></svg-icon>
-            <svg-icon v1="r" v2="7"></svg-icon>
-          </div>
-        </div>
-      </section>
-      <section class="scollsnap">
-        <div id="_codegenerator">
-          <h2>IconMeister SCRIPT Code Generator:</h2>
-          <p>
-            Want to play with example code, see:
-            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
-            (documented full source code) -
-            <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/"
-              >JSFidlle Example #1 With &lt;icon-toolbar> Custom Element</a
-            >(minified production example)
-          </p>
-          <p>
-            Copy this code into the HTML document. In the HEAD if you want the &ltsvg-icon> Custom Element declared
-            asap<br />
-            If your WebServer is really really secured, you might need a
-            <a
-              target="_blank"
-              href="https://developers.google.com/web/fundamentals/security/csp/#if_you_absolutely_must_use_it"
-              >CSP nonce</a
-            >.<br />
-            Or import it. It is an IIFE, so will not touch the global scope.
-          </p>
-          <p>You can ofcourse rename the iconnames to any name you want</p>
-          <p id="_codeinfo">
-            IconMeister: <span id="_elementsCodeIMSize">000</span> Bytes +
-            <b><span id="_elementsCodeIconCount"></span></b> icons = <span id="_elementsCodeSize">000</span> Bytes (but
-            only delivered GZip size counts!)
-          </p>
-          <p class="loadstatus"></p>
-          <textarea spellcheck="false" id="_elementsCode">
-Preparing all 7000+ icons takes a minute. You can scroll the red area below, and view all icons while loading. Mouse-over an icon to see its title and SVG definition string. Once loading is done, select icons and this textarea will contain all JS code required. Your selected icons are stored in LocalStorage. You can collapse the IconSets you do not want to see;</textarea
-          >
-
-          <div id="_selectedIcons"></div>
-        </div>
-
+      </pre>
+        <p>on the icons above</p>
+      </div>
+    </section>
+    <section>
+      <h3>Configure multiple Elements with CSS Properties:</h3>
+      <div>
+        <p>All Attribute/'Property values can be set with (modern) --CSSproperties</p>
+        <style id="CSSpropertiesStyle">
+          #CSSproperties>svg-icon {
+            --color: red;
+            --radius: 3;
+            --svg-icon-stroke: var(--color);
+            --svg-icon-width: 0.5;
+            --svg-icon-fill: green;
+            --svg-icon-rotate: 45;
+            --svg-icon-rect: "<circle cx='4.5' cy='4.5' r='" var(--radius) "' fill='yellow'/>";
+          }
+        </style>
+        <div displaystyle="CSSpropertiesStyle"></div>
         <br />
-        <button id="createDownloadLink">Download this generated IconMeister Javascript file</button
-        ><a download="element.iconmeister.js" id="downloadlink" style="display: none">Download IconMeister code</a>
+        <div id="CSSproperties">
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+          <svg-icon is="im"></svg-icon>
+        </div>
+        <p>
+          CSS properties are not observed (do not trigger updates).
+          <br />CSS properties are read on Icon (re)creation. <br />
+          You can redraw an icon by calling its <span class="code">.svg()</span> method.
+        </p>
+      </div>
+      <h3>Example #1 - Scrabble tiles</h3>
+      <div>
+        <p>IconMeister has 3 pre-defined variables: v1, v2, v3 (same behaviour as Attributes)</p>
+        <style>
+          #_scrabble svg-icon {
+            background: none;
+            /* cancel global background:grey above*/
+          }
+        </style>
+        <style id="CSSscrabbleStyle">
+          #_scrabble {
+            --iconwidth: 80px;
+            --svg-icon-box: 100;
+            --tile: "<rect width='100%' height='100%' fill='#e6c998' rx='15' />";
+            --letter: "<text x='40' y='75' font-size='70' font-family='Arial' text-anchor='middle'>{v1}</text>";
+            --value: "<text x='75' y='80' font-size='25' font-family='Arial' text-anchor='middle'>{v2}</text>";
+            --svg-icon-rect: var(--tile) var(--letter) var(--value);
+          }
+        </style>
+        <div displaystyle="CSSscrabbleStyle"></div>
+        <div displaystyle="_scrabble"></div>
+        <br />
+        <div id="_scrabble">
+          <svg-icon v1="I" v2="0"></svg-icon>
+          <svg-icon v1="c" v2="0"></svg-icon>
+          <svg-icon v1="o" v2="6"></svg-icon>
+          <svg-icon v1="n" v2="4"></svg-icon>
+          <svg-icon v1="M" v2="8"></svg-icon>
+          <svg-icon v1="e" v2="7"></svg-icon>
+          <svg-icon v1="i" v2="0"></svg-icon>
+          <svg-icon v1="s" v2="1"></svg-icon>
+          <svg-icon v1="t" v2="3"></svg-icon>
+          <svg-icon v1="e" v2="4"></svg-icon>
+          <svg-icon v1="r" v2="7"></svg-icon>
+        </div>
+      </div>
+    </section>
+    <section class="scollsnap">
+      <div id="_codegenerator">
+        <h2>IconMeister SCRIPT Code Generator:</h2>
+        <p>
+          Want to play with example code, see:
+          <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/dws87pk4/">JSFiddle #0</a>
+          (documented full source code) -
+          <a target="_blank" href="https://jsfiddle.net/CustomElementsExamples/6uwr3ytL/">JSFidlle Example #1 With
+            &lt;icon-toolbar> Custom Element</a>(minified production example)
+        </p>
+        <p>
+          Copy this code into the HTML document. In the HEAD if you want the &ltsvg-icon> Custom Element declared
+          asap<br />
+          If your WebServer is really really secured, you might need a
+          <a target="_blank"
+            href="https://developers.google.com/web/fundamentals/security/csp/#if_you_absolutely_must_use_it">CSP
+            nonce</a>.<br />
+          Or import it. It is an IIFE, so will not touch the global scope.
+        </p>
+        <p>You can ofcourse rename the iconnames to any name you want</p>
+        <p id="_codeinfo">
+          IconMeister: <span id="_elementsCodeIMSize">000</span> Bytes +
+          <b><span id="_elementsCodeIconCount"></span></b> icons = <span id="_elementsCodeSize">000</span> Bytes (but
+          only delivered GZip size counts!)
+        </p>
+        <p class="loadstatus"></p>
+        <textarea spellcheck="false" id="_elementsCode">
+Preparing all 7000+ icons takes a minute. You can scroll the red area below, and view all icons while loading. Mouse-over an icon to see its title and SVG definition string. Once loading is done, select icons and this textarea will contain all JS code required. Your selected icons are stored in LocalStorage. You can collapse the IconSets you do not want to see;</textarea>
 
-        <h3 id="iconsheader">
-          <span class="iconcount"></span> available icons filter:
-          <input type="text" id="searchBox" placeholder="[search all icons]" />
-        </h3>
-        Click an Icon to include in your (localStorage) Icon Set. Collapse the Icon Sets you do not want to see.
-        <div id="_sectionAvailableIcons">
-          <div
-            id="Bootstrap"
-            class="iconlist"
-            src="icons-bootstrap-1030-icons.json"
-            uri="//icons.getbootstrap.com/"
-          ></div>
-          <div
-            id="Carbon"
-            class="iconlist load"
-            src="icons-carbon-1269-icons.json"
-            uri="//www.carbondesignsystem.com/guidelines/icons/library"
-          ></div>
-          <div id="Clarity" class="iconlist" src="icons-clarity-1100-icons.json" uri="//clarity.design/icons"></div>
-          <div id="Eva" class="iconlist" src="icons-eva-489-icons.json" uri="//akveo.github.io/eva-icons/"></div>
-          <div id="Feather" class="iconlist" src="icons-feather-281-icons.json" uri="//feathericons.com/"></div>
-          <div
-            id="FontAwesome"
-            class="iconlist"
-            src="icons-fontawesome-1150-icons.json"
-            uri="//fontawesome.com/icons"
-          ></div>
-          <div id="Linear" class="iconlist load" src="icons-linear-170-icons.json" uri="//linearicons.com/free"></div>
-          <div
-            id="Material"
-            class="iconlist"
-            src="icons-material-960-icons.json"
-            uri="https://material.io/resources/icons"
-          ></div>
-          <div id="Radix" class="iconlist load" src="icons-radix-264-icons.json" uri="//icons.modulz.app/"></div>
-          <div
-            id="Vaadin"
-            class="iconlist load"
-            src="icons-vaadin-636-icons.json"
-            uri="//vaadin.com/components/vaadin-icons"
-          ></div>
+        <div id="_selectedIcons"></div>
+      </div>
+
+      <br />
+      <button id="createDownloadLink">Download this generated IconMeister Javascript file</button><a
+        download="element.iconmeister.js" id="downloadlink" style="display: none">Download IconMeister code</a>
+
+      <h3 id="iconsheader">
+        <span class="iconcount"></span> available icons filter:
+        <input type="text" id="searchBox" placeholder="[search all icons]" />
+      </h3>
+
+      Click an Icon to include in your (localStorage) Icon Set. Collapse the Icon Sets you do not want to see.
+
+      <div id="_sectionAvailableIcons">
+        <div id="Bootstrap" class="iconlist" src="icons-bootstrap-1030-icons.json" uri="//icons.getbootstrap.com/">
+          <!-- <svg-icon>s will be generated here 
+            by processing JSON file
+            OR by inject iconsHTML_Bootstrap.html file here
+          -->
         </div>
-      </section>
-      <hr />
-      <section>
-        <h3>When working with icons</h3>
-        <ul>
-          <li>
-            Icons take up 100% of the parent block element. Easiest is to place the icon inside a CSS Grid or Flexbox
-            container.
-            <br />Also see:
-            <ul>
-              <li>
-                <a href="https://www.impressivewebs.com/width-100-percent-css/"
-                  >https://www.impressivewebs.com/width-100-percent-css/</a
-                >
-              </li>
-              <li>
-                <a href="https://github.com/iconmeister/iconmeister.github.io/issues/1"
-                  >https://github.com/iconmeister/iconmeister.github.io/issues/1</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li>
-            Take notice of accessibility
-            <a href="https://css-tricks.com/accessible-svgs/">https://css-tricks.com/accessible-svgs/</a>
-          </li>
-        </ul>
-      </section>
-      <hr />
-      <section>
-        <h3>Advanced: include raw SVG</h3>
-        <div>
-          raw SVG is allowed but your mileage may vary<br />
+        <!-- <div id="Carbon" class="iconlist load" src="icons-carbon-1269-icons.json"
+                              uri="//www.carbondesignsystem.com/guidelines/icons/library"></div> -->
+        <!-- <div id="Clarity" class="iconlist" src="icons-clarity-1100-icons.json" 
+                               uri="//clarity.design/icons"></div>
+        <div id="Eva" class="iconlist" src="icons-eva-489-icons.json" 
+                      uri="//akveo.github.io/eva-icons/"></div> -->
+        <!-- <div id="Feather" class="iconlist" 
+                          src="icons-feather-281-icons.json" uri="//feathericons.com/"></div> -->
+        <div id="FontAwesome" class="iconlist" src="icons-fontawesome-1150-icons.json" uri="//fontawesome.com/icons">
+        </div>
+        <!-- <div id="Linear" class="iconlist load" 
+                         src="icons-linear-170-icons.json" uri="//linearicons.com/free"></div> -->
+        <div id="Material" class="iconlist" src="icons-material-960-icons.json"
+          uri="https://material.io/resources/icons"></div>
+        <!-- <div id="Radix" class="iconlist load" 
+                        src="icons-radix-264-icons.json" uri="//icons.modulz.app/"></div> -->
+        <!-- <div id="Vaadin" class="iconlist load" 
+                              src="icons-vaadin-636-icons.json" uri="//vaadin.com/components/vaadin-icons"></div> -->
+
+      </div>
+    </section>
+    <hr />
+    <section>
+      <h3>When working with icons</h3>
+      <ul>
+        <li>
+          Icons take up 100% of the parent block element. Easiest is to place the icon inside a CSS Grid or Flexbox
+          container.
+          <br />Also see:
           <ul>
-            <li>No " double quotes, only single quotes - because the JSON structure uses double-quotes</li>
-            <li>No ; semi-colon - because they separate IconMeister "box:16;path:..." commands</li>
-            <li>No , commas - because they separate IconMeister command Parameters</li>
+            <li>
+              <a
+                href="https://www.impressivewebs.com/width-100-percent-css/">https://www.impressivewebs.com/width-100-percent-css/</a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/iconmeister/iconmeister.github.io/issues/1">https://github.com/iconmeister/iconmeister.github.io/issues/1</a>
+            </li>
           </ul>
-          <pre class="code">"circle":"box:24;&lt;circle cx='12' cy='12' r='6'/>"</pre>
-        </div>
-        <h3>Advanced: hardcode propertyvalues</h3>
-        <div>
-          All properties can be hardcoded in the icon definition string
-          <pre class="code">
-"arrow-up":"box:24;width:2;stroke:blue;opacity:0.5;path:M12 19L12 5M5 12 12 5 19 12"});</pre
-          >
-          Attributes/Property/CSS properties will override these initial settings
-        </div>
-        <h3>Advanced: Icon API</h3>
-        <div>
-          All Icons can be accessed with the <code>icon.api[0]</code> API:
-          <pre class="code">
+        </li>
+        <li>
+          Take notice of accessibility
+          <a href="https://css-tricks.com/accessible-svgs/">https://css-tricks.com/accessible-svgs/</a>
+        </li>
+      </ul>
+    </section>
+    <hr />
+    <section>
+      <h3>Advanced: include raw SVG</h3>
+      <div>
+        raw SVG is allowed but your mileage may vary<br />
+        <ul>
+          <li>No " double quotes, only single quotes - because the JSON structure uses double-quotes</li>
+          <li>No ; semi-colon - because they separate IconMeister "box:16;path:..." commands</li>
+          <li>No , commas - because they separate IconMeister command Parameters</li>
+        </ul>
+        <pre class="code">"circle":"box:24;&lt;circle cx='12' cy='12' r='6'/>"</pre>
+      </div>
+      <h3>Advanced: hardcode propertyvalues</h3>
+      <div>
+        All properties can be hardcoded in the icon definition string
+        <pre class="code">
+"arrow-up":"box:24;width:2;stroke:blue;opacity:0.5;path:M12 19L12 5M5 12 12 5 19 12"});</pre>
+        Attributes/Property/CSS properties will override these initial settings
+      </div>
+      <h3>Advanced: Icon API</h3>
+      <div>
+        All Icons can be accessed with the <code>icon.api[0]</code> API:
+        <pre class="code">
 
 let icon = document.querySelector("svg-icon");
 Object.entries( icon.api[0] ).forEach( ([name,definition]) => console.log(name) );
           </pre>
-          <p>
-            <b>Every &lt;svg-icon> points to the same icon set!</b>
-          </p>
-          <p>The API has 2 entry points: [ 0=ICONS, 1=FUNCs ]</p>
-        </div>
-        <h3>Advanced: adding pre-defined functions</h3>
-        <div>
-          <p>Only <code>path:</code> is defined as function:</p>
-          <img src="https://i.imgur.com/SERU7Lm.jpg" />
+        <p>
+          <b>Every &lt;svg-icon> points to the same icon set!</b>
+        </p>
+        <p>The API has 2 entry points: [ 0=ICONS, 1=FUNCs ]</p>
+      </div>
+      <h3>Advanced: adding pre-defined functions</h3>
+      <div>
+        <p>Only <code>path:</code> is defined as function:</p>
+        <img src="https://i.imgur.com/SERU7Lm.jpg" />
 
-          <p>Uncomment/add pre-defined functions</p>
-          <p>Additional functions can be added <b>dynamically</b> with:</p>
-          <pre class="code">
+        <p>Uncomment/add pre-defined functions</p>
+        <p>Additional functions can be added <b>dynamically</b> with:</p>
+        <pre class="code">
 
 let icon = document.querySelector("svg-icon");
 icon.api[1]["newFunction"] = (par1, par2, ... ) => `[valid SVG]`; // see functions above
           </pre>
-        </div>
-      </section>
-      <section>
-        <h3>Editting SVG</h3>
-        <div>
-          <ul>
-            <li>
-              <a target="_blank" href="https://jakearchibald.github.io/svgomg/">SVG cleanup (Jake Archibald SVGOMG)</a>
-            </li>
-            <li>
-              <a target="_blank" href="https://yqnn.github.io/svg-path-editor/">(nest) SVG Path Editor</a>
-            </li>
-            <li>
-              <a target="_blank" href="http://jsfiddle.net/CustomElementsExamples/d4fk1n6o/">Path conversion tool</a>
-            </li>
-            <li><a target="_blank" href="https://aydos.com/svgedit/">SVG Editor</a></li>
-            <li>
-              <a target="_blank" href="http://complexdan.com/svg-circleellipse-to-path-converter/"
-                >SVG Circle to Path conversion</a
-              >
-            </li>
-            <li><a target="_blank" href="https://www.smiffysplace.com/stars.html">SVG n-sided Star creator</a></li>
-          </ul>
-        </div>
-      </section>
+      </div>
+    </section>
+    <section>
+      <h3>Editting SVG</h3>
+      <div>
+        <ul>
+          <li>
+            <a target="_blank" href="https://jakearchibald.github.io/svgomg/">SVG cleanup (Jake Archibald SVGOMG)</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://yqnn.github.io/svg-path-editor/">(nest) SVG Path Editor</a>
+          </li>
+          <li>
+            <a target="_blank" href="http://jsfiddle.net/CustomElementsExamples/d4fk1n6o/">Path conversion tool</a>
+          </li>
+          <li><a target="_blank" href="https://aydos.com/svgedit/">SVG Editor</a></li>
+          <li>
+            <a target="_blank" href="http://complexdan.com/svg-circleellipse-to-path-converter/">SVG Circle to Path
+              conversion</a>
+          </li>
+          <li><a target="_blank" href="https://www.smiffysplace.com/stars.html">SVG n-sided Star creator</a></li>
+        </ul>
+      </div>
+    </section>
 
-      <p></p>
-    </main>
-    <footer>
-      <h2>This is Free UNlicensed Open Source software</h2>
-      <h3>If the IconMeister saved you time, consider making a donation, Thank You!</h3>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="THKN253UNTRAC" />
-        <input
-          type="image"
-          src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
-          border="0"
-          name="submit"
-          title="PayPal - The safer, easier way to pay online!"
-          alt="Donate with PayPal button"
-        />
-        <!-- <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" /> -->
-      </form>
+    <p></p>
+  </main>
+  <footer>
+    <h2>This is Free UNlicensed Open Source software</h2>
+    <h3>If the IconMeister saved you time, consider making a donation, Thank You!</h3>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="THKN253UNTRAC" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+        title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <!-- <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" /> -->
+    </form>
 
-      <h3>More Meisters:</h3>
-      <a href="cardmeister.github.io" target="blank">CardMeister</a> ,
-      <a href="flagmeister.github.io" target="blank">FlagMeister</a> ,
-      <a href="chessmeister.github.io" target="blank">ChessMeister</a> ,
-      <a href="iconmeister.github.io" target="blank">IconMeister</a>
-    </footer>
-    <script>
-      let icons = document.getElementsByTagName("svg-icon"); // keep a live nodelist
+    <h3>More Meisters:</h3>
+    <a href="cardmeister.github.io" target="blank">CardMeister</a> ,
+    <a href="flagmeister.github.io" target="blank">FlagMeister</a> ,
+    <a href="chessmeister.github.io" target="blank">ChessMeister</a> ,
+    <a href="iconmeister.github.io" target="blank">IconMeister</a>
+  </footer>
+  <script>
+    let icons = document.getElementsByTagName("svg-icon"); // keep a live nodelist
 
-      const redrawIcon = (icon) => (icon.is = icon.is); // force update to redraw with CSS properties
-      const redrawIcons = (icons) => [...icons].map(redrawIcon); // update all existing icons
+    const redrawIcon = (icon) => (icon.is = icon.is); // force update to redraw with CSS properties
+    const redrawIcons = (icons) => [...icons].map(redrawIcon); // update all existing icons
 
-      function addIconMeisterIcon(name, str, redraw = false) {
-        let iconsAPI = document.querySelector("svg-icon").api[0]; //0 = ICONs, 1 = FUNCs
-        if (iconsAPI[name]) return false;
-        iconsAPI[name] = str;
-        if (redraw) redrawIcons(icons);
-        return true;
-      }
-      addIconMeisterIcon("im", "box:9;path:m3 3h3v3h-3z");
-    </script>
-    <script>
-      let urlParams = new URLSearchParams(window.location.search);
-      window.onload = () => {
-        let totaliconcount = 0;
-        let demoicons = $demoicons.getElementsByTagName("svg-icon");
-        let docicons = $demoicons.getElementsByClassName("demohtml");
+    let iconsAPI = document.querySelector("svg-icon").api[0]; //0 = ICONs, 1 = FUNCs
+    function addIconMeisterIcon(name, str, redraw = false) {
+      if (iconsAPI[name]) return false;
+      iconsAPI[name] = str;
+      if (redraw) redrawIcons(icons);
+      return true;
+    }
+    addIconMeisterIcon("im", "box:9;path:m3 3h3v3h-3z");
+  </script>
+  <script>
+    let urlParams = new URLSearchParams(window.location.search);
+    window.onload = () => {
+      let totaliconcount = 0;
+      let demoicons = $demoicons.getElementsByTagName("svg-icon");
+      let docicons = $demoicons.getElementsByClassName("demohtml");
 
-        const JSONstring = (obj) => JSON.stringify(obj);
-        // const setProperties = (obj, propes) => Object.assign(obj, props);
-        const setAttributes = (obj, attrs) => Object.entries(attrs).map((entry) => obj.setAttribute(...entry));
-        const createElement = (tag, attributes = {}) => (
-          (tag = document.createElement(tag)), setAttributes(tag, attributes), tag
+      const JSONstring = (obj) => JSON.stringify(obj);
+      // const setProperties = (obj, propes) => Object.assign(obj, props);
+      const setAttributes = (obj, attrs) => Object.entries(attrs).map((entry) => obj.setAttribute(...entry));
+      const createElement = (tag, attributes = {}) => (
+        (tag = document.createElement(tag)), setAttributes(tag, attributes), tag
+      );
+      const getElementById = (id, d = document) => d.getElementById(id);
+      const removeNodes = (nodes) => [...nodes].forEach((el) => el.remove());
+      const addHTML = (el, html, type = "afterend") => el.insertAdjacentHTML(type, html);
+      const escapeHTML = (html) => html.replace(/\</g, "&lt;");
+      const PRE = (html) => `<div class=code>${html}</div>`;
+
+      //todo same function
+      const openingTag = (icon) => escapeHTML(icon.outerHTML.match("<svg-icon .*?>")[0]);
+      const iconHTML = (icon) => escapeHTML(icon.outerHTML.split('">')[0]);
+
+      const iconDOC = (icon) => addHTML(icon, `<span class="demohtml">${iconHTML(icon)}"><br></span>`);
+      const documentIcons = () => removeNodes(docicons) | [...demoicons].forEach(iconDOC);
+
+      const saveLocalStorage = (selected) =>
+        localStorage.setItem(
+          "iconmeister",
+          JSONstring({
+            selected,
+          })
         );
-        const getElementById = (id, d = document) => d.getElementById(id);
-        const removeNodes = (nodes) => [...nodes].forEach((el) => el.remove());
-        const addHTML = (el, html, type = "afterend") => el.insertAdjacentHTML(type, html);
-        const escapeHTML = (html) => html.replace(/\</g, "&lt;");
-        const PRE = (html) => `<div class=code>${html}</div>`;
+      const loadLocalStorage = () => {
+        let obj = JSON.parse(localStorage.getItem("iconmeister")) || false;
+        if (obj) obj.selected.forEach(appendSelectedIconByName);
+        else {
+          appendSelectedIconByName("bi-gear");
+          appendSelectedIconByName("f-settings");
+          appendSelectedIconByName("cl-core-cog-line");
+        }
+      };
 
-        //todo same function
-        const openingTag = (icon) => escapeHTML(icon.outerHTML.match("<svg-icon .*?>")[0]);
-        const iconHTML = (icon) => escapeHTML(icon.outerHTML.split('">')[0]);
+      const getSelectedIcons = (attr = "[selected]") => [..._selectedIcons.querySelectorAll(`svg-icon${attr}`)];
+      const getSelectedAvailableIcons = () => [..._sectionAvailableIcons.querySelectorAll("svg-icon[selected]")];
 
-        const iconDOC = (icon) => addHTML(icon, `<span class="demohtml">${iconHTML(icon)}"><br></span>`);
-        const documentIcons = () => removeNodes(docicons) | [...demoicons].forEach(iconDOC);
+      // const updateSelectedIcons = () => {
+      //   _selectedIcons.innerHTML = "";
+      //   _selectedIcons.append(...getSelectedAvailableIcons().map(appendSelectedIcon));
+      //   redrawIcons(selected);
+      // };
 
-        const saveLocalStorage = (selected) =>
-          localStorage.setItem(
-            "iconmeister",
-            JSONstring({
-              selected,
-            })
-          );
-        const loadLocalStorage = () => {
-          let obj = JSON.parse(localStorage.getItem("iconmeister")) || false;
-          if (obj) obj.selected.forEach(appendSelectedIconByName);
-          else {
-            appendSelectedIconByName("bi-gear");
-            appendSelectedIconByName("f-settings");
-            appendSelectedIconByName("cl-core-cog-line");
-          }
-        };
-
-        const getSelectedIcons = (attr = "[selected]") => [..._selectedIcons.querySelectorAll(`svg-icon${attr}`)];
-        const getSelectedAvailableIcons = () => [..._sectionAvailableIcons.querySelectorAll("svg-icon[selected]")];
-
-        // const updateSelectedIcons = () => {
-        //   _selectedIcons.innerHTML = "";
-        //   _selectedIcons.append(...getSelectedAvailableIcons().map(appendSelectedIcon));
-        //   redrawIcons(selected);
-        // };
-
-        const appendSelectedIcon = (icon, manual = true) => {
-          if (!icon) return;
-          let newiconCode;
-          const removeSelected = () => {
-            icon.removeAttribute("selected");
-            if (icon.selectedIcon) icon.selectedIcon.remove();
-            setElementsCode(newiconCode);
-          };
-          if (icon.toggleAttribute("selected")) {
-            let newicon = icon.cloneNode(true);
-            if (manual) newiconCode = `"${newicon.is}":"${newicon.getAttribute("attrs")}"`;
-            icon.selectedIcon = newicon;
-            newicon.onclick = removeSelected;
-            newicon.onmouseover = (evt) => console.error(21, newiconCode); //setElementsCode(newiconCode);
-            _selectedIcons.append(newicon);
-          } else {
-            removeSelected();
-          }
+      const appendSelectedIcon = (icon, manual = true) => {
+        if (!icon) return;
+        let newiconCode;
+        const removeSelected = () => {
+          icon.removeAttribute("selected");
+          if (icon.selectedIcon) icon.selectedIcon.remove();
           setElementsCode(newiconCode);
         };
+        if (icon.toggleAttribute("selected")) {
+          let newicon = icon.cloneNode(true);
+          if (manual) newiconCode = `"${newicon.is}":"${newicon.getAttribute("attrs")}"`;
+          icon.selectedIcon = newicon;
+          newicon.onclick = removeSelected;
+          newicon.onmouseover = (evt) => console.error(21, newiconCode); //setElementsCode(newiconCode);
+          _selectedIcons.append(newicon);
+        } else {
+          removeSelected();
+        }
+        setElementsCode(newiconCode);
+      };
 
-        const appendSelectedIconByName = (name) => {
-          let icons = [...document.querySelectorAll(`svg-icon[is="${name}"]`)];
-          // console.log(`adding ${icons.length} icons`);
-          icons.forEach((icon) => appendSelectedIcon(icon, false));
-        };
+      const appendSelectedIconByName = (name) => {
+        let icons = [...document.querySelectorAll(`svg-icon[is="${name}"]`)];
+        // console.log(`adding ${icons.length} icons`);
+        icons.forEach((icon) => appendSelectedIcon(icon, false));
+      };
 
-        // ====================================================================================
-        documentIcons();
+      // ====================================================================================
+      documentIcons();
 
-        document.querySelectorAll("[displaystyle]").forEach((styleElement) => {
-          const attr = styleElement.getAttribute("displaystyle");
-          const tag = getElementById(attr);
-          const html = tag.innerHTML;
-          let new_html = "";
-          if (tag.nodeName == "STYLE") {
-            new_html = PRE(escapeHTML(html));
-          } else {
-            let openingTags = "\t" + [...tag.children].map(openingTag).join`\n\t`;
-            new_html = PRE(openingTags).replace(/"/g, "") + "\n\n";
-          }
-          addHTML(styleElement, new_html);
-        });
+      document.querySelectorAll("[displaystyle]").forEach((styleElement) => {
+        const attr = styleElement.getAttribute("displaystyle");
+        const tag = getElementById(attr);
+        const html = tag.innerHTML;
+        let new_html = "";
+        if (tag.nodeName == "STYLE") {
+          new_html = PRE(escapeHTML(html));
+        } else {
+          let openingTags = "\t" + [...tag.children].map(openingTag).join`\n\t`;
+          new_html = PRE(openingTags).replace(/"/g, "") + "\n\n";
+        }
+        addHTML(styleElement, new_html);
+      });
 
-        const setInnerHTML = (txt = "", cl = "loadstatus") =>
-          [...document.getElementsByClassName(cl)].map((sp) => (sp.innerHTML = txt));
+      const setInnerHTML = (txt = "", cl = "loadstatus") =>
+        [...document.getElementsByClassName(cl)].map((sp) => (sp.innerHTML = txt));
 
-        let totalAvailableIconCount = 0;
-        let blocksize = ~~(urlParams.get("size") || 25);
-        function loadIcons(list) {
-          //if URL set=Radix parameter, only load these sets
-          let loadSet = urlParams.get("set") || false;
-          if (loadSet.length && !loadSet.includes(list.id)) {
-            console.warn(loadSet.includes(list.id));
-            return;
-          }
-          const file = list.getAttribute("src");
-          setInnerHTML(`Loading: ${file}`);
-          // if string at end of HTML file contains something then return
-          const isLocal = document.location.hostname === "localhost";
-          if (isLocal && !file.includes(excludeJSONfile)) return;
-          try {
-            return new Promise((resolve, reject) => {
-              fetch(file, { mode: "cors" })
-                .then((response) => response.json())
-                .then((response) => {
-                  const uri = list.getAttribute("uri");
-                  // don't load more than N icons per set
-                  const entries = Object.entries(response).slice(0, isLocal ? 4999 : 1999);
-                  const addTotalCount = (cnt) => setInnerHTML((totaliconcount += cnt), "iconcount");
+      let totalAvailableIconCount = 0;
+      let blocksize = ~~(urlParams.get("size") || 100);
+      function loadIconsFromJSON(list) {
+        //if URL set=Radix parameter, only load these sets
+        let loadSet = urlParams.get("set") || false;
+        if (loadSet.length && !loadSet.includes(list.id)) {
+          console.warn(loadSet.includes(list.id));
+          return;
+        }
+        const file = list.getAttribute("src");
+        setInnerHTML(`Loading: ${file}`);
+        // if string at end of HTML file contains something then return
+        const isLocal = document.location.hostname === "localhost";
+        if (isLocal && !file.includes(excludeJSONfile)) return;
+        try {
+          return new Promise((resolve, reject) => {
+            fetch(file, { mode: "cors" })
+              .then((response) => response.json())
+              .then((response) => {
+                const uri = list.getAttribute("uri");
+                // don't load more than N icons per set
+                const entries = Object.entries(response).slice(0, isLocal ? 4999 : 1999);
+                const addTotalCount = (cnt) => setInnerHTML((totaliconcount += cnt), "iconcount");
 
-                  let iconsContainer = "summaryIcons_" + list.id;
-                  // list, entries, uri
-                  const html = `<details open><summary>${entries.length} ${list.id} Icons <span><a target="_blank" href='${uri}'>${uri}</a></span></summary><div id="${iconsContainer}"></div></details>`;
-                  addHTML(list, html, "beforebegin");
-                  iconsContainer = document.getElementById(iconsContainer);
+                let iconsContainer = "summaryIcons_" + list.id;
+                // list, entries, uri
+                const html = `<details open><summary>${entries.length} ${list.id} Icons <span><a target="_blank" href='${uri}'>${uri}</a></span></summary><div id="${iconsContainer}"></div></details>`;
+                addHTML(list, html, "beforebegin");
+                iconsContainer = document.getElementById(iconsContainer);
 
-                  totalAvailableIconCount += entries.length;
-                  console.log(entries.length, uri);
-                  let storedHTML = false; //localStorage.getItem(list.id);//todo: make it work
-                  const appendIcons = (startBlock) => {
-                    let startTime = new Date() / 1;
-                    const endBlock = startBlock + blocksize;
-                    const addicons = entries.slice(startBlock, endBlock);
+                totalAvailableIconCount += entries.length;
+                console.log(entries.length, uri);
+                let storedHTML = false; //localStorage.getItem(list.id);//todo: make it work
+                const appendIconsPerBlock = (startBlock) => {
+                  let startTime = new Date() / 1;
+                  const endBlock = startBlock + blocksize;
+                  const addicons = entries.slice(startBlock, endBlock);
+                  let screenUpdate = true;
+                  if (screenUpdate == true) {
                     addTotalCount(addicons.length);
                     setInnerHTML(
                       `one-time Parsing ${totalAvailableIconCount} icons ${startBlock}...${endBlock} from ${file}`
                     ); // ${entries.length}
                     addicons.map(([is, str]) => {
+                      // 666
                       if (!addIconMeisterIcon(is, str, false)) console.error("duplicate", is, list.id);
                     });
                     if (!storedHTML) {
-                      //let fragment = document.createDocumentFragment();
-                      const newicons = addicons.map(([is, attrs]) =>
-                        createElement("svg-icon", {
-                          is,
-                          attrs, //used to highlight iconcode in generator
-                          title: is + "\n\n" + attrs,
-                        })
-                      );
-                      //fragment.append(...newicons);
-                      iconsContainer.append(...newicons);
-                      //redrawIcons(newicons);
-                    }
-                    if (endBlock < entries.length) setTimeout(() => appendIcons(endBlock), 0);
-                    else {
-                      if (storedHTML) {
-                        // document.getElementById(list.id).innerHTML = storedHTML;
-                        // [...document.getElementById(list.id).querySelectorAll("svg-icon")].map((icon) => {
-                        // console.warn(icon);
-                        // redrawIcon(icon);
-                        // });
+                      let fragment = document.createDocumentFragment();
+                      let withHTML = true;
+                      if (withHTML) {
+                        iconsContainer.insertAdjacentHTML("beforeend", addicons.map(([is, attrs]) => {
+                          return `<svg-icon is="${is}"></svg-icon>`;
+                        }).join(""));
+                      } else {
+                        const newicons = addicons.map(([is, attrs]) =>
+                          createElement("svg-icon", {
+                            is,
+                            //attrs, //used to highlight iconcode in generator
+                            //title: is + "\n\n" + attrs,
+                          })
+                        );
+                        //fragment.append(...newicons);
+                        iconsContainer.append(...newicons);
+                        //console.log(iconsContainer)
+                        //redrawIcons(newicons);
                       }
-                      // localStorage.setItem(list.id, document.getElementById(list.id).innerHTML);
-                      console.timeLog(list.id);
-
-                      let debounce = false;
-                      iconsContainer.onclick = (evt) => {
-                        if (debounce) return;
-                        appendSelectedIcon(evt.target.closest("svg-icon"));
-                        debounce = true;
-                        setTimeout(() => (debounce = false), 300);
-                      };
-                      let duration = new Date() / 1 - startTime;
-                      if (duration > 60 && blocksize > 10) {
-                        blocksize -= 10;
-                      } else if (blocksize < 200) {
-                        blocksize += 10;
-                      }
-                      resolve(list);
                     }
-                  };
+                  }
+                  if (endBlock < entries.length) setTimeout(() => appendIconsPerBlock(endBlock), 0);
+                  else {
+                    if (storedHTML) {
+                      // document.getElementById(list.id).innerHTML = storedHTML;
+                      // [...document.getElementById(list.id).querySelectorAll("svg-icon")].map((icon) => {
+                      // console.warn(icon);
+                      // redrawIcon(icon);
+                      // });
+                    }
+                    // localStorage.setItem(list.id, document.getElementById(list.id).innerHTML);
+                    console.timeLog(list.id);
 
-                  setTimeout(() => {
-                    console.time(list.id);
-                    appendIcons(0);
-                  });
-                })
-                .catch((e) => console.error(file, e));
-            });
-          } catch (e) {
-            console.error(file, e);
-          }
-        }
+                    let debounce = false;
+                    iconsContainer.onclick = (evt) => {
+                      if (debounce) return;
+                      appendSelectedIcon(evt.target.closest("svg-icon"));
+                      debounce = true;
+                      setTimeout(() => (debounce = false), 300);
+                    };
+                    let duration = new Date() / 1 - startTime;
+                    if (duration > 60 && blocksize > 10) {
+                      blocksize -= 10;
+                    } else if (blocksize < 200) {
+                      blocksize += 10;
+                    }
+                    resolve(list);
+                  }
+                };
 
-        const fetchFile = (file, callback) => {
-          fetch(file)
-            .then((response) => response.text())
-            .then(callback);
-        };
-
-        const createIconMeisterSCRIPTcontent = (intoElement, iconsJSON) => {
-          const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
-          let iconsSTR = `\n${addLineBreaks(iconsJSON)}`;
-          let marker = `{iconmeister:"iconmeister"}`;
-          let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(marker, iconsSTR);
-          intoElement.innerHTML = IMscript;
-          return IMscript;
-        };
-
-        let elementsDemoCode = "";
-        let elementsCodeSource = "";
-        const setElementsCode = (highlight = "") => {
-          // elementsCodeSource = txt;
-          _elementsCodeIMSize.innerHTML = elementsCodeSource.length;
-          let iconsJSON = {};
-          let iconNames = getSelectedIcons().map(({ is, api }) => {
-            iconsJSON[is] = api[0][is];
-            elementsDemoCode += `<svg-icon is="${is}"></svg-icon>\n`;
-            return is;
+                setTimeout(() => {
+                  console.time(list.id);
+                  appendIconsPerBlock(0);
+                });
+              })
+              .catch((e) => console.error(file, e));
           });
-          saveLocalStorage(iconNames);
-          _elementsCodeIconCount.innerHTML = Object.keys(iconsJSON).length;
-
-          let IMscript = createIconMeisterSCRIPTcontent(_elementsCode, iconsJSON);
-
-          _elementsCode.style.height = "";
-          _elementsCode.style.height = _elementsCode.scrollHeight + "px";
-          _elementsCodeSize.innerHTML = IMscript.length;
-
-          const start = IMscript.indexOf(highlight);
-          if (highlight != "") {
-            _elementsCode.focus();
-            _elementsCode.setSelectionRange(start - 3, start + highlight.length);
-            //_elementsCode.scrollTop = _elementsCode.scrollHeight;
-          }
-        };
-
-        redrawIcons(icons);
-
-        let load_iconlist = [...document.querySelectorAll(".iconlist")];
-        Promise.all(load_iconlist.map(loadIcons)).then((lists) => {
-          fetchFile("elements.iconmeister.min.js", (response) => {
-            elementsCodeSource = response;
-            loadLocalStorage();
-            // fetchFile("elements.iconmeister.min_save.js.gz", (response) => {
-            // console.log(response.length, "bytes gzip");
-            //              elementsSize.innerHTML = response.length;
-            setInnerHTML();
-            still_loading.remove();
-            setElementsCode();
-
-            // });
-            //_codeinfo.scrollIntoView(true);
-          });
-        });
-
-        $coloricons.querySelectorAll("svg-icon").forEach((icon) => {
-          const demoicons = $demoicons.querySelectorAll("[is=im]");
-          // const color = icon.stroke;
-          const style = (i, tile, stroke, width, scale) => (
-            (i.tile = tile), (i.stroke = stroke), (i.width = width), (i.scale = scale)
-          );
-          const setIcon = (di) => style(di, icon.fill, icon.stroke, 0.5, 1.7);
-          const unsetIcon = (di) => style(di, "none", "blue", 1, 1);
-          const changeIcons = (func) => {
-            // _configureElementAttributes.scrollIntoView(true);
-            _main.scroll({
-              top: 300,
-              left: 0,
-              behavior: "smooth",
-            });
-
-            demoicons.forEach(func);
-            documentIcons();
-          };
-          icon.is = "im";
-          icon.onmouseover = () => changeIcons(setIcon);
-          icon.onmouseout = () => changeIcons(unsetIcon);
-        });
-
-        
-        
-        let searchBoxSelect = (value) => {
-          search.innerHTML = value
-            ? `#_sectionAvailableIcons svg-icon:not([is*="${value}"]){display:none}` +
-              `#_sectionAvailableIcons svg-icon[is*="${value}"]{--searchBoxed;background:green;--iconwidth:30px;margin:1px}`
-            : ``;
-        };
-        let searched = urlParams.get("search") || "";
-        if (searched.length) {
-          searchBox.value = searched;
-          searchBoxSelect(searched);
-          _codegenerator.scrollIntoView();
+        } catch (e) {
+          console.error(file, e);
         }
-        searchBox.addEventListener("keyup", (evt) => searchBoxSelect(searchBox.value));
+      }
 
+      const fetchFile = (file, callback) => {
+        fetch(file)
+          .then((response) => response.text())
+          .then(callback);
+      };
 
+      const createIconMeisterSCRIPTcontent = (intoElement, iconsJSON) => {
+        const addLineBreaks = (x) => JSONstring(x).replace(/\",\"/g, '",\n"');
+        let iconsSTR = `\n${addLineBreaks(iconsJSON)}`;
+        let marker = `{iconmeister:"iconmeister"}`;
+        let IMscript = `&lt;script>\n${elementsCodeSource}\n&lt;/script>`.replace(marker, iconsSTR);
+        intoElement.innerHTML = IMscript;
+        return IMscript;
+      };
 
+      let elementsDemoCode = "";
+      let elementsCodeSource = "";
+      const setElementsCode = (highlight = "") => {
+        // elementsCodeSource = txt;
+        _elementsCodeIMSize.innerHTML = elementsCodeSource.length;
+        let iconsJSON = {};
+        let iconNames = getSelectedIcons().map(({ is, api }) => {
+          iconsJSON[is] = api[0][is];
+          elementsDemoCode += `<svg-icon is="${is}"></svg-icon>\n`;
+          return is;
+        });
+        saveLocalStorage(iconNames);
+        _elementsCodeIconCount.innerHTML = Object.keys(iconsJSON).length;
 
-        var textFile = null;
-        document.getElementById("createDownloadLink").addEventListener(
-          "click",
-          function () {
-            //fetch element.iconmeister.html
-            // replace `<script id="iconmeister">
-            let link = document.getElementById("downloadlink");
-            let text = document.getElementById("_elementsCode").value;
-            text = text.replace("<script>", "");
-            text = text.replace("<\/script>", "");
-            var data = new Blob([text], { type: "text/plain" });
-            if (textFile !== null) window.URL.revokeObjectURL(textFile);
-            link.href = window.URL.createObjectURL(data);
-            // link.style.display = "block"; // keep hidden for FireFox
-            link.click();
-          },
-          false
+        let IMscript = createIconMeisterSCRIPTcontent(_elementsCode, iconsJSON);
+
+        _elementsCode.style.height = "";
+        _elementsCode.style.height = _elementsCode.scrollHeight + "px";
+        _elementsCodeSize.innerHTML = IMscript.length;
+
+        const start = IMscript.indexOf(highlight);
+        if (highlight != "") {
+          _elementsCode.focus();
+          _elementsCode.setSelectionRange(start - 3, start + highlight.length);
+          //_elementsCode.scrollTop = _elementsCode.scrollHeight;
+        }
+      };
+
+      redrawIcons(icons);
+
+      let load_iconlist = [...document.querySelectorAll(".iconlist")].slice(8, 9);
+      console.log("load_iconlist", load_iconlist);
+      let loadIcons = loadIconsFromJSON; // original code, inject <svg-icon> based on JSON
+
+      let loadIconsFromHTML = (iconlist, idx) => {
+        let id = iconlist.id;
+        if (id == "Bootstrap") {
+          let iconsHTMLfilename = `iconsHTML_${id}.html`;
+          console.log("loadIcons", iconsHTMLfilename);
+          iconlist.innerHTML = `<load-file src="${iconsHTMLfilename}"></load-file>`;
+        }
+      }
+
+      Promise.all(load_iconlist.map(loadIcons)).then((lists) => {
+        console.log("lists loaded", lists);
+        fetchFile("elements.iconmeister.min.js", (response) => {
+          console.log(response.length, "bytes in minified file");
+          elementsCodeSource = response;
+          loadLocalStorage();
+          // fetchFile("elements.iconmeister.min_save.js.gz", (response) => {
+          // console.log(response.length, "bytes gzip");
+          //              elementsSize.innerHTML = response.length;
+          setInnerHTML();
+          still_loading.remove();
+          setElementsCode();
+          // });
+          //_codeinfo.scrollIntoView(true);
+        });
+      });
+
+      $coloricons.querySelectorAll("svg-icon").forEach((icon) => {
+        const demoicons = $demoicons.querySelectorAll("[is=im]");
+        // const color = icon.stroke;
+        const style = (i, tile, stroke, width, scale) => (
+          (i.tile = tile), (i.stroke = stroke), (i.width = width), (i.scale = scale)
         );
-      }; //
+        const setIcon = (di) => style(di, icon.fill, icon.stroke, 0.5, 1.7);
+        const unsetIcon = (di) => style(di, "none", "blue", 1, 1);
+        const changeIcons = (func) => {
+          // _configureElementAttributes.scrollIntoView(true);
+          _main.scroll({
+            top: 300,
+            left: 0,
+            behavior: "smooth",
+          });
 
-      var excludeJSONfile = "";
-    </script>
-    <hr />
-    <hr />
-    <h3>Todo</h3>
-    <a href="https://materialdesignicons.com/">https://materialdesignicons.com/</a>
-    <script id="IconMeisterAll"></script>
-  </body>
+          demoicons.forEach(func);
+          documentIcons();
+        };
+        icon.is = "im";
+        icon.onmouseover = () => changeIcons(setIcon);
+        icon.onmouseout = () => changeIcons(unsetIcon);
+      });
+
+
+
+      let searchBoxSelect = (value) => {
+        search.innerHTML = value
+          ? `#_sectionAvailableIcons svg-icon:not([is*="${value}"]){display:none}` +
+          `#_sectionAvailableIcons svg-icon[is*="${value}"]{--searchBoxed;background:green;--iconwidth:30px;margin:1px}`
+          : ``;
+      };
+      let searched = urlParams.get("search") || "";
+      if (searched.length) {
+        searchBox.value = searched;
+        searchBoxSelect(searched);
+        _codegenerator.scrollIntoView();
+      }
+      searchBox.addEventListener("keyup", (evt) => searchBoxSelect(searchBox.value));
+
+
+
+
+      var textFile = null;
+      document.getElementById("createDownloadLink").addEventListener(
+        "click",
+        function () {
+          //fetch element.iconmeister.html
+          // replace `<script id="iconmeister">
+          let link = document.getElementById("downloadlink");
+          let text = document.getElementById("_elementsCode").value;
+          text = text.replace("<script>", "");
+          text = text.replace("<\/script>", "");
+          var data = new Blob([text], { type: "text/plain" });
+          if (textFile !== null) window.URL.revokeObjectURL(textFile);
+          link.href = window.URL.createObjectURL(data);
+          // link.style.display = "block"; // keep hidden for FireFox
+          link.click();
+        },
+        false
+      );
+    }; //
+
+    var excludeJSONfile = "";
+  </script>
+  <hr />
+  <hr />
+  <h3>Todo</h3>
+  <a href="https://materialdesignicons.com/">https://materialdesignicons.com/</a>
+  <script id="IconMeisterAll"></script>
+</body>
+
 </html>
